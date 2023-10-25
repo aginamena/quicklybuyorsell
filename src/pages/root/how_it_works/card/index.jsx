@@ -5,6 +5,7 @@ import {
   CardMedia,
   Typography,
 } from "@mui/material";
+import PropTypes from "prop-types";
 
 export default function HowItWorksCard({ title, imagePath, description }) {
   return (
@@ -18,10 +19,10 @@ export default function HowItWorksCard({ title, imagePath, description }) {
           role="image"
         />
         <CardContent>
-          <Typography gutterBottom component="div" role="title">
+          <Typography gutterBottom component="div">
             {title}
           </Typography>
-          <Typography variant="body2" color="text.secondary" role="description">
+          <Typography variant="body2" color="text.secondary">
             {description}
           </Typography>
         </CardContent>
@@ -29,3 +30,9 @@ export default function HowItWorksCard({ title, imagePath, description }) {
     </Card>
   );
 }
+
+HowItWorksCard.propTypes = {
+  title: PropTypes.string.isRequired,
+  description: PropTypes.string.isRequired,
+  image: PropTypes.string.isRequired,
+};
