@@ -8,6 +8,7 @@ describe("How it works component", () => {
       description: "This is a description",
       image: "/path/to/image",
     };
+
     render(<HowItWorksCard {...props} />);
     expect(screen.getByText(props.title)).toBeInTheDocument();
     expect(screen.getByRole("image")).toBeInTheDocument();

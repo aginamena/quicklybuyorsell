@@ -14,6 +14,7 @@ import MenuItem from "@mui/material/MenuItem";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import { alpha, styled } from "@mui/material/styles";
+import { Button } from "@mui/material";
 import * as React from "react";
 
 const Search = styled("div")(({ theme }) => ({
@@ -59,7 +60,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   },
 }));
 
-export default function MainHeader() {
+export default function MainHeader({ signInWithGoogle }) {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
 
@@ -234,9 +235,9 @@ export default function MainHeader() {
             >
               <AccountCircle />
             </IconButton> */}
-            <Typography>Login</Typography>
-            <Typography sx={{ mr: "10px", ml: "10px" }}>Or</Typography>
-            <Typography>Register</Typography>
+            <Button data-testid="signInBtn" onClick={signInWithGoogle}>
+              Sign in
+            </Button>
           </Box>
           <Box sx={{ display: { xs: "flex", md: "none" } }}>
             <IconButton
