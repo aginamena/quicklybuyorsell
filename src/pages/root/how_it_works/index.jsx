@@ -23,8 +23,8 @@ export default function HowItWorks() {
         />
         <HowItWorksCard
           title="Start the transaction process"
-          imagePath=""
-          description=""
+          imagePath="test"
+          description="test"
         />
       </Box>
     </Box>

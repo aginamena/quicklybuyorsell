@@ -34,5 +34,5 @@ export default function HowItWorksCard({ title, imagePath, description }) {
 HowItWorksCard.propTypes = {
   title: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
-  image: PropTypes.string.isRequired,
+  imagePath: PropTypes.string.isRequired,
 };

@@ -6,7 +6,7 @@ describe("How it works component", () => {
     const props = {
       title: "This is a title",
       description: "This is a description",
-      image: "/path/to/image",
+      imagePath: "/path/to/image",
     };
 
     render(<HowItWorksCard {...props} />);

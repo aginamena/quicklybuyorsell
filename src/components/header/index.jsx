@@ -1,17 +1,18 @@
-import { auth, provider, signInWithPopup } from "config/firebase";
-import { storeProfile } from "services/users";
+import { useEffect, useState } from "react";
+import { getUser } from "services/auth";
 import MainHeader from "./mainHeader";
 import SubHeader from "./subheader";
 
 export default function Header() {
-  async function signInWithGoogle() {
-    const result = await signInWithPopup(auth, provider);
-    const { phoneNumber, uid, email, displayName, photoURL } = result.user;
-    storeProfile({ phoneNumber, uid, email, displayName, photoURL });
-  }
+  const [user, setUser] = useState({});
+
+  useEffect(() => {
+    getUser(setUser);
+  }, []);
+
   return (
     <>
-      <MainHeader signInWithGoogle={signInWithGoogle} />
+      <MainHeader user={user} setUser={setUser} />
       <div style={{ marginTop: "10px" }}></div>
       <SubHeader />
     </>
