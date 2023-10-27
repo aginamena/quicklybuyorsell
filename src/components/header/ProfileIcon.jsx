@@ -28,7 +28,12 @@ export default function ProfileIcon({ src }) {
             open={open}
             onClose={() => setAnchorEl(null)}
           >
-            <MenuItem>My Account</MenuItem>
+            <MenuItem
+              data-testid="MyAccount"
+              onClick={() => navigate("my-account")}
+            >
+              My Account
+            </MenuItem>
             <div onClick={logOut} data-testid="logoutBtn">
               <MenuItem>Log Out</MenuItem>
             </div>

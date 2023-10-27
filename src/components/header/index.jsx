@@ -10,11 +10,12 @@ export default function Header() {
     getUser(setUser);
   }, []);
 
+  const currentPage = window.location.pathname;
   return (
     <>
       <MainHeader user={user} setUser={setUser} />
       <div style={{ marginTop: "10px" }}></div>
-      <SubHeader />
+      {currentPage === "/" && <SubHeader />}
     </>
   );
 }

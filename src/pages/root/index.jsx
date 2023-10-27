@@ -8,7 +8,6 @@ import WhatOurCustomersSay from "./WhatOurCustomersSay";
 export default function Root() {
   return (
     <>
-      <Header />
       <TodaysProducts />
       <TopSellers />
       <HowItWorks />
