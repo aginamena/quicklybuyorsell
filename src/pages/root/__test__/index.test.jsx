@@ -1,5 +1,5 @@
 import { render, screen } from "@testing-library/react";
-import HowItWorksCard from "..";
+import HowItWorksCard from "../HowItWorksCard";
 
 describe("How it works component", () => {
   it("Displays the title, image and description in the dom", () => {

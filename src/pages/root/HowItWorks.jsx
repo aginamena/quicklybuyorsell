@@ -1,5 +1,5 @@
 import { Box, Typography } from "@mui/material";
-import HowItWorksCard from "./card";
+import HowItWorksCard from "./HowItWorksCard";
 
 export default function HowItWorks() {
   return (

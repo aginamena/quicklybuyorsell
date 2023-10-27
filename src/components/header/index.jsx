@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { getUser } from "services/auth";
-import MainHeader from "./mainHeader";
-import SubHeader from "./subheader";
+import MainHeader from "./MainHeader";
+import SubHeader from "./SubHeader";
 
 export default function Header() {
   const [user, setUser] = useState({});

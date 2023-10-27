@@ -1,9 +1,9 @@
-import Footer from "components/footer";
-import Header from "components/header";
-import HowItWorks from "./how_it_works";
-import TodaysProducts from "./todays_products";
-import TopSellers from "./top_sellers";
-import WhatOurCustomersSay from "./what_our_customers_say";
+import Footer from "components/Footer";
+import Header from "components/Header";
+import HowItWorks from "./HowItWorks";
+import TodaysProducts from "./TodaysProducts";
+import TopSellers from "./TopSellers";
+import WhatOurCustomersSay from "./WhatOurCustomersSay";
 
 export default function Root() {
   return (
