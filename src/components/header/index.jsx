@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { getUser } from "services/auth";
+import { getUser } from "services/users";
 import MainHeader from "./MainHeader";
 import SubHeader from "./SubHeader";
 

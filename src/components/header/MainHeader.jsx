@@ -16,8 +16,9 @@ import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import { alpha, styled } from "@mui/material/styles";
 import PropTypes from "prop-types";
-import { useEffect, useState } from "react";
-import { getUser, signInWithGoogle } from "services/auth";
+import { useState } from "react";
+import { signInWithGoogle } from "services/auth";
+import { getUser } from "services/users";
 import ProfileIcon from "./ProfileIcon";
 
 const Search = styled("div")(({ theme }) => ({
@@ -215,18 +216,7 @@ export default function MainHeader({ user, setUser }) {
           <Box sx={{ display: { xs: "none", md: "flex" } }}>
             {Object.keys(user).length !== 0 ? (
               <div data-testid="profileMenu">
-                <ProfileIcon />
-                {/* <IconButton
-                  size="large"
-                  edge="end"
-                  aria-label="account of current user"
-                  aria-controls={menuId}
-                  aria-haspopup="true"
-                  onClick={handleProfileMenuOpen}
-                  color="inherit"
-                >
-                  <AccountCircle src = {user.photoURL}/>
-                </IconButton> */}
+                <ProfileIcon src={user.photoURL} />
               </div>
             ) : (
               <Button data-testid="signInBtn" onClick={signIn}>

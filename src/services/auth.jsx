@@ -5,6 +5,7 @@ import {
   setPersistence,
   browserLocalPersistence,
   onAuthStateChanged,
+  signOut,
 } from "config/firebase";
 
 export async function signInWithGoogle() {
@@ -12,15 +13,14 @@ export async function signInWithGoogle() {
     await setPersistence(auth, browserLocalPersistence);
     await signInWithPopup(auth, provider);
   } catch (error) {
-    alert(error.message);
+    alert("An error occured");
   }
 }
 
-export function getUser(setUser) {
-  onAuthStateChanged(auth, (user) => {
-    console.log(user);
-    if (user) {
-      setUser(user);
-    } else setUser({});
-  });
+export async function logOut() {
+  try {
+    await signOut(auth);
+  } catch (error) {
+    alert("An error occured");
+  }
 }
