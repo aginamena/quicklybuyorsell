@@ -29,7 +29,9 @@ export default function ProfileIcon({ src }) {
             onClose={() => setAnchorEl(null)}
           >
             <MenuItem>My Account</MenuItem>
-            <MenuItem onClick={logOut}>Log Out</MenuItem>
+            <div onClick={logOut} data-testid="logoutBtn">
+              <MenuItem>Log Out</MenuItem>
+            </div>
           </Menu>
         </div>
       )}

@@ -12,7 +12,7 @@ jest.mock("../../../services/users", () => ({
   getUser: jest.fn(),
 }));
 describe("Main Header component", () => {
-  it("should show the sign in button when the user hasn't signed in", () => {
+  it("Should show the sign in button when the user hasn't signed in", () => {
     render(
       <BrowserRouter>
         <MainHeader user={{}} setUser={jest.fn()} />
@@ -22,7 +22,7 @@ describe("Main Header component", () => {
     expect(screen.queryByTestId("profileMenu")).not.toBeInTheDocument();
   });
 
-  it("should show the profile menu icon when the user is logged in", () => {
+  it("Should show the profile menu icon when the user is logged in", () => {
     render(
       <BrowserRouter>
         <MainHeader
@@ -38,7 +38,7 @@ describe("Main Header component", () => {
     expect(screen.getByTestId("profileMenu")).toBeInTheDocument();
   });
 
-  it("should sign up the user when the user clicks on the sign in button", async () => {
+  it("Should sign up the user when the user clicks on the sign in button", async () => {
     render(
       <BrowserRouter>
         <MainHeader user={{}} setUser={jest.fn()} />

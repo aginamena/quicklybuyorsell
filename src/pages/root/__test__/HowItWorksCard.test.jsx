@@ -1,7 +1,7 @@
 import { render, screen } from "@testing-library/react";
 import HowItWorksCard from "../HowItWorksCard";
 
-describe("How it works component", () => {
+describe("How It Works Card component", () => {
   it("Displays the title, image and description in the dom", () => {
     const props = {
       title: "This is a title",
