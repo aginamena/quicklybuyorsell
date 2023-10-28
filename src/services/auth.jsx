@@ -1,10 +1,9 @@
 import {
   auth,
-  provider,
-  signInWithPopup,
-  setPersistence,
   browserLocalPersistence,
-  onAuthStateChanged,
+  provider,
+  setPersistence,
+  signInWithPopup,
   signOut,
 } from "config/firebase";
 

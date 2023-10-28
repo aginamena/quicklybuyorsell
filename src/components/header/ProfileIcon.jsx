@@ -1,6 +1,5 @@
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import { Avatar, Box, Button, Menu, MenuItem } from "@mui/material";
-// import { AppContext } from "providers/AppProvider";
 import PropTypes from "prop-types";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";

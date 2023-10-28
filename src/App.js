@@ -1,4 +1,4 @@
-import Root from "./pages/root";
+import Root from "./pages/Root";
 import { CssBaseline } from "@mui/material";
 import { ThemeProvider } from "@mui/material/styles";
 import { darkTheme } from "./theme";

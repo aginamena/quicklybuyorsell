@@ -16,7 +16,6 @@ describe("Profile Icon component", () => {
         <ProfileIcon src={path} />
       </BrowserRouter>
     );
-    // eslint-disable-next-line testing-library/no-node-access
     expect(screen.getByTestId("image").firstChild.src).toBe(path);
   });
 
@@ -27,9 +26,9 @@ describe("Profile Icon component", () => {
       </BrowserRouter>
     );
     await waitFor(() =>
-      // eslint-disable-next-line testing-library/no-wait-for-side-effects
       userEvent.click(screen.getByTestId("KeyboardArrowDownIcon"))
     );
+
     expect(screen.getByTestId("profileIconMenu")).toBeInTheDocument();
   });
   it("Should not show the popup menu when the profile menu isn't clicked", () => {
@@ -47,9 +46,7 @@ describe("Profile Icon component", () => {
       </BrowserRouter>
     );
     await waitFor(() => {
-      // eslint-disable-next-line testing-library/no-wait-for-side-effects
       userEvent.click(screen.getByTestId("KeyboardArrowDownIcon"));
-      //   eslint-disable-next-line testing-library/no-wait-for-side-effects
       userEvent.click(screen.getByTestId("logoutBtn"));
     });
     expect(logOut).toHaveBeenCalledTimes(1);

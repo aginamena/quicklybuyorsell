@@ -45,7 +45,6 @@ describe("Main Header component", () => {
       </BrowserRouter>
     );
     const signInBtn = screen.getByTestId("signInBtn");
-    // eslint-disable-next-line testing-library/no-wait-for-side-effects
     await waitFor(() => userEvent.click(signInBtn));
     expect(signInWithGoogle).toHaveBeenCalledTimes(1);
     expect(getUser).toHaveBeenCalledTimes(1);

@@ -1,3 +1,3 @@
 export default function ViewProducts() {
-  return <div data-testid="viewProducts">View Products</div>;
+  return <div data-testid="View Products Cmp">View Products</div>;
 }
