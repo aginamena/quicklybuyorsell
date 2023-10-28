@@ -1,17 +1,18 @@
-import Root from "./pages/Root";
 import { CssBaseline } from "@mui/material";
 import { ThemeProvider } from "@mui/material/styles";
-import { darkTheme } from "./theme";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import MyAccount from "pages/MyAccount";
+
 import Header from "components/Header";
+import MyAccount from "pages/MyAccount";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Root from "./pages/Root";
+import { darkTheme } from "./theme";
 
 function App() {
   return (
     <ThemeProvider theme={darkTheme}>
       <CssBaseline />
       <BrowserRouter>
-        <Header />
+        <Header currentPath={window.location.pathname} />
         <Routes>
           <Route exact path="/" element={<Root />} />
           <Route exact path="my-account" element={<MyAccount />} />
