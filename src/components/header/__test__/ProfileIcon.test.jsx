@@ -10,7 +10,7 @@ jest.mock("../../../services/auth", () => ({
 
 describe("Profile Icon component", () => {
   const path = "http://localhost/path/to/image";
-  it("Should display the profile image given the url", () => {
+  it("Should display the profile image given the src of the image", () => {
     render(
       <BrowserRouter>
         <ProfileIcon src={path} />
@@ -28,7 +28,6 @@ describe("Profile Icon component", () => {
     await waitFor(() =>
       userEvent.click(screen.getByTestId("KeyboardArrowDownIcon"))
     );
-
     expect(screen.getByTestId("profileIconMenu")).toBeInTheDocument();
   });
   it("Should not show the popup menu when the profile menu isn't clicked", () => {
@@ -39,12 +38,13 @@ describe("Profile Icon component", () => {
     );
     expect(screen.queryByTestId("profileIconMenu")).not.toBeInTheDocument();
   });
-  it("Should logout the user when the user clicks on the logout button", async () => {
+  it("Should call logout function when the user clicks on the logout button", async () => {
     render(
       <BrowserRouter>
         <ProfileIcon src={path} />
       </BrowserRouter>
     );
+
     await waitFor(() => {
       userEvent.click(screen.getByTestId("KeyboardArrowDownIcon"));
       userEvent.click(screen.getByTestId("logoutBtn"));

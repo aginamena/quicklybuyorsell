@@ -11,6 +11,11 @@ export default function ProfileIcon({ src }) {
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
 
+  async function signOut() {
+    await logOut();
+    navigate("/");
+  }
+
   return (
     <Box>
       <Button
@@ -33,7 +38,7 @@ export default function ProfileIcon({ src }) {
             >
               My Account
             </MenuItem>
-            <div onClick={logOut} data-testid="logoutBtn">
+            <div onClick={signOut} data-testid="logoutBtn">
               <MenuItem>Log Out</MenuItem>
             </div>
           </Menu>

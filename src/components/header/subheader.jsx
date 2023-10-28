@@ -13,7 +13,7 @@ const PaperCmp = styled(Paper)(({ theme }) => ({
 }));
 export default function SubHeader() {
   return (
-    <Box>
+    <div data-testid="SubHeader">
       <AppBar position="static">
         <Toolbar
           sx={{
@@ -44,6 +44,6 @@ export default function SubHeader() {
           </Typography>
         </Toolbar>
       </AppBar>
-    </Box>
+    </div>
   );
 }
