@@ -21,6 +21,7 @@ describe("My Account component", () => {
       expect(screen.getByTestId("Create Products Cmp")).toBeInTheDocument();
     });
   });
+
   it("Should display View Products component when the View Products tab is clicked", () => {
     render(<MyAccount />);
     waitFor(() => {
