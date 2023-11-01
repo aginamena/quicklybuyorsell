@@ -17,9 +17,10 @@ import { PostImage } from "./style";
 import { useState } from "react";
 import ClearIcon from "@mui/icons-material/Clear";
 import { useTheme } from "@mui/material/styles";
+import { createProduct } from "./util";
 
 export default function CreateProducts() {
-  const [specification, setSpecification] = useState({ Images: [] });
+  const [specification, setSpecification] = useState({ images: [] });
 
   const theme = useTheme();
 
@@ -29,10 +30,10 @@ export default function CreateProducts() {
 
   function addImages(newImage) {
     const MAXIMUM_NUMBER_OF_IMAGES = 6;
-    if (specification.Images.length < MAXIMUM_NUMBER_OF_IMAGES) {
+    if (specification.images.length < MAXIMUM_NUMBER_OF_IMAGES) {
       setSpecification({
         ...specification,
-        Images: [...specification.Images, newImage],
+        images: [...specification.images, newImage],
       });
     } else {
       alert("Maximum number of images reached");
@@ -41,12 +42,30 @@ export default function CreateProducts() {
   function removeImages(index) {
     setSpecification({
       ...specification,
-      Images: specification.Images.filter((_, i) => i !== index),
+      images: specification.images.filter((_, i) => i !== index),
     });
   }
 
   async function handleSubmit(e) {
     e.preventDefault();
+    const MINIMUM_LENGTH_OF_DESCRIPTION = 150;
+    if (specification.Description.length < 150) {
+      alert(
+        `Description should be more than ${MINIMUM_LENGTH_OF_DESCRIPTION} characters`
+      );
+      return;
+    }
+    if (
+      specification.Type &&
+      !getTypeOfCategoryName(specification.Category).includes(
+        specification.Type
+      )
+    ) {
+      alert("Select the right type of category");
+      return;
+    }
+
+    createProduct(specification);
     console.log(specification);
   }
 
@@ -59,7 +78,7 @@ export default function CreateProducts() {
         handleSelect={(value) =>
           setSpecification({
             ...specification,
-            Category: value,
+            category: value,
           })
         }
       />
@@ -72,7 +91,7 @@ export default function CreateProducts() {
               handleSelect={(value) =>
                 setSpecification({
                   ...specification,
-                  Type: value,
+                  type: value,
                 })
               }
             />
@@ -102,51 +121,40 @@ export default function CreateProducts() {
         <Stack
           direction={ismediumScreenSizeAndBelow ? "column" : "row"}
           spacing={2}
-          style={{
-            marginTop: "20px",
-            display: "flex",
-            flexWrap: "wrap",
-            // justifyContent: "space-between",
-          }}
         >
-          <div data-testid="imageList">
-            {specification.Images.map((image, index) => (
-              <Box
-                key={index}
+          {specification.images.map((image, index) => (
+            <Box
+              key={index}
+              style={{
+                width: "200px",
+                height: "200px",
+                backgroundColor: "black",
+                position: "relative",
+              }}
+            >
+              <img
+                src={URL.createObjectURL(image)}
+                alt="Posting preview"
                 style={{
-                  width: "200px",
-                  height: "200px",
-                  backgroundColor: "black",
-                  position: "relative",
+                  width: "100%",
+                  height: "100%",
+                  opacity: "0.7",
                 }}
-              >
-                <img
-                  src={URL.createObjectURL(image)}
-                  alt="Posting preview"
+              />
+              <div onClick={() => removeImages(index)}>
+                <ClearIcon
                   style={{
-                    width: "100%",
-                    height: "100%",
-                    opacity: "0.7",
+                    position: "absolute",
+                    right: "10px",
+                    top: "10px",
+                    cursor: "pointer",
                   }}
+                  role=""
+                  fontSize="large"
                 />
-                <div
-                  onClick={() => removeImages(index)}
-                  data-testid="clearIcon"
-                >
-                  <ClearIcon
-                    style={{
-                      position: "absolute",
-                      right: "10px",
-                      top: "10px",
-                      cursor: "pointer",
-                    }}
-                    role=""
-                    fontSize="large"
-                  />
-                </div>
-              </Box>
-            ))}
-          </div>
+              </div>
+            </Box>
+          ))}
         </Stack>
       </Box>
 
@@ -156,24 +164,28 @@ export default function CreateProducts() {
         required
         label="Product title"
         variant="outlined"
+        value={specification.Title}
+        data-testid="title"
         fullWidth
         onChange={(e) =>
           setSpecification({
             ...specification,
-            Title: e.target.value,
+            title: e.target.value,
           })
         }
       />
       <TextField
         required
         type="number"
+        data-testid="amount"
+        value={specification.Amount}
         style={{ marginTop: "30px", marginBottom: "30px" }}
         fullWidth
         inputProps={{ min: "0", step: "any", "data-testid": "setAmount" }}
         onChange={(e) =>
           setSpecification({
             ...specification,
-            Amount: e.target.value,
+            amount: e.target.value,
           })
         }
         label="Price (NGN)"
@@ -182,15 +194,17 @@ export default function CreateProducts() {
         required
         name="Product description"
         variant="outlined"
+        data-testid="description"
         fullWidth
         inputProps={{ "data-testid": "Product description" }}
         multiline
+        value={specification.Description}
         rows={5}
         placeholder="What other details do you want buyers to know about?"
         onChange={(e) =>
           setSpecification({
             ...specification,
-            Description: e.target.value,
+            description: e.target.value,
           })
         }
       />

@@ -20,8 +20,9 @@ export default function SelectCmp({ name, menuItems, handleSelect }) {
         <InputLabel data-testid="inputLabel">{name}</InputLabel>
         <Select
           value={state}
-          data-testid="select"
+          data-testid={name}
           required
+          defaultValue=""
           onChange={(e) => handleChange(e)}
         >
           {menuItems.map((menuItem, index) => (
