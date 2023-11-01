@@ -4,6 +4,7 @@ describe("Select component", () => {
   const props = {
     name: "testCategory",
     menuItems: ["firstItem", "secondItem", "thirdItem", "fourthItem"],
+    handleSelect: () => {},
   };
   beforeEach(() => {
     cy.mount(<SelectCmp {...props} />);

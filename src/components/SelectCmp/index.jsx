@@ -1,22 +1,29 @@
-import * as React from "react";
 import Box from "@mui/material/Box";
+import FormControl from "@mui/material/FormControl";
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
-import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
+import PropTypes from "prop-types";
+import { useState } from "react";
 
-export default function SelectCmp({ name, menuItems }) {
-  const [age, setAge] = React.useState("");
+export default function SelectCmp({ name, menuItems, handleSelect }) {
+  const [state, setState] = useState("");
 
   const handleChange = (event) => {
-    setAge(event.target.value);
+    setState(event.target.value);
+    handleSelect(event.target.value);
   };
 
   return (
     <Box sx={{ minWidth: 120 }}>
       <FormControl fullWidth>
         <InputLabel data-testid="inputLabel">{name}</InputLabel>
-        <Select value={age} label="Age" data-testid="select">
+        <Select
+          value={state}
+          data-testid="select"
+          required
+          onChange={(e) => handleChange(e)}
+        >
           {menuItems.map((menuItem, index) => (
             <MenuItem key={index} value={menuItem}>
               {menuItem}
@@ -27,3 +34,9 @@ export default function SelectCmp({ name, menuItems }) {
     </Box>
   );
 }
+
+SelectCmp.propTypes = {
+  name: PropTypes.string.isRequired,
+  menuItems: PropTypes.array.isRequired,
+  handleSelect: PropTypes.func.isRequired,
+};
