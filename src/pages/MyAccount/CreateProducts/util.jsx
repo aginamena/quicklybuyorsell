@@ -1,17 +1,19 @@
 import {
-  storage,
-  uploadBytes,
-  ref,
+  auth,
   doc,
   firestore,
-  setDoc,
   getDownloadURL,
+  ref,
+  setDoc,
+  storage,
+  uploadBytes,
 } from "config/firebase";
 
-export async function createProduct(specification, email) {
+export async function createProduct(specification) {
+  const email = auth.currentUser.email;
   const productId = getUniqueId();
   const listOfFilePaths = await uploadFiles(
-    specification.images,
+    specification.files,
     productId,
     email
   );

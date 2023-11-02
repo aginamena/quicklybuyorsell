@@ -22,8 +22,7 @@ export default function SelectCmp({ name, menuItems, handleSelect }) {
           value={state}
           data-testid={name}
           required
-          defaultValue=""
-          onChange={(e) => handleChange(e)}
+          onChange={handleChange}
         >
           {menuItems.map((menuItem, index) => (
             <MenuItem key={index} value={menuItem}>
