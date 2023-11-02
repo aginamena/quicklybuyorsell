@@ -20,7 +20,7 @@ import { useTheme } from "@mui/material/styles";
 import { createProduct } from "./util";
 
 export default function CreateProducts() {
-  const [specification, setSpecification] = useState({ images: [] });
+  const [specification, setSpecification] = useState({ files: [] });
 
   const theme = useTheme();
 
@@ -28,21 +28,21 @@ export default function CreateProducts() {
     theme.breakpoints.down("md")
   );
 
-  function addImages(newImage) {
-    const MAXIMUM_NUMBER_OF_IMAGES = 6;
-    if (specification.images.length < MAXIMUM_NUMBER_OF_IMAGES) {
+  function addFile(newImage) {
+    const MAXIMUM_NUMBER_OF_FILES = 10;
+    if (specification.files.length < MAXIMUM_NUMBER_OF_FILES) {
       setSpecification({
         ...specification,
-        images: [...specification.images, newImage],
+        files: [...specification.files, newImage],
       });
     } else {
-      alert("Maximum number of images reached");
+      alert("Maximum number of files reached");
     }
   }
-  function removeImages(index) {
+  function removeFile(index) {
     setSpecification({
       ...specification,
-      images: specification.images.filter((_, i) => i !== index),
+      files: specification.files.filter((_, i) => i !== index),
     });
   }
 
@@ -65,8 +65,7 @@ export default function CreateProducts() {
       return;
     }
 
-    createProduct(specification);
-    console.log(specification);
+    await createProduct(specification);
   }
 
   return (
@@ -108,12 +107,13 @@ export default function CreateProducts() {
               type="file"
               data-testid="image"
               accept="image/jpeg, image/png"
-              onChange={(e) => addImages(e.target.files[0])}
+              onChange={(e) => addFile(e.target.files[0])}
               required
             />
 
             <Typography>
-              Add some images. You can add up to 6 images. Jpeg or Png only.
+              Add image and video files. You can add up to 10 files. Jpeg or Png
+              only
             </Typography>
           </Box>
         </PostImage>
@@ -122,7 +122,7 @@ export default function CreateProducts() {
           direction={ismediumScreenSizeAndBelow ? "column" : "row"}
           spacing={2}
         >
-          {specification.images.map((image, index) => (
+          {specification.files.map((image, index) => (
             <Box
               key={index}
               style={{
@@ -141,7 +141,7 @@ export default function CreateProducts() {
                   opacity: "0.7",
                 }}
               />
-              <div onClick={() => removeImages(index)}>
+              <div onClick={() => removeFile(index)}>
                 <ClearIcon
                   style={{
                     position: "absolute",
