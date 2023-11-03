@@ -1,5 +1,11 @@
 import { initializeApp } from "firebase/app";
-import { doc, getFirestore, setDoc } from "firebase/firestore";
+import {
+  collection,
+  doc,
+  getDocs,
+  getFirestore,
+  setDoc,
+} from "firebase/firestore";
 import { getDownloadURL, getStorage, ref, uploadBytes } from "firebase/storage";
 import {
   GoogleAuthProvider,
@@ -42,4 +48,6 @@ export {
   doc,
   setDoc,
   getDownloadURL,
+  getDocs,
+  collection,
 };

@@ -3,13 +3,20 @@ import Tabs from "@mui/material/Tabs";
 import { useTheme } from "@mui/material/styles";
 
 import TabPanel from "components/TabPanel";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 import CreateProducts from "./CreateProducts";
 import ViewProducts from "./ViewProducts";
 import { TabCmp } from "./style";
+import { getUser } from "services/users";
 
 export default function MyAccount() {
+  const [user, setUser] = useState({});
+
+  useEffect(() => {
+    getUser(setUser);
+  }, []);
+
   const theme = useTheme();
   const ismediumScreenSizeAndBelow = useMediaQuery(
     theme.breakpoints.down("md")
@@ -39,7 +46,7 @@ export default function MyAccount() {
           <CreateProducts />
         </TabPanel>
         <TabPanel value={value} index={1}>
-          <ViewProducts />
+          <ViewProducts email={user.email} />
         </TabPanel>
       </Container>
     </>
