@@ -36,7 +36,7 @@ export default function ProductDetails() {
     );
   }
   return (
-    <Container>
+    <Container style={{ marginBottom: "50px" }}>
       <Toolbar />
       <Grid container spacing={3}>
         {productDetails.files && (

@@ -16,6 +16,7 @@ import {
   browserLocalPersistence,
   onAuthStateChanged,
   signOut,
+  getAdditionalUserInfo,
 } from "firebase/auth";
 
 const firebaseConfig = {
@@ -52,4 +53,5 @@ export {
   getDocs,
   collection,
   getDoc,
+  getAdditionalUserInfo,
 };

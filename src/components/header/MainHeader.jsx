@@ -20,6 +20,7 @@ import { useState } from "react";
 import { signInWithGoogle } from "services/auth";
 import { getUser } from "services/users";
 import ProfileIcon from "./ProfileIcon";
+import DialogCmp from "components/DialogCmp";
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -67,6 +68,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 export default function MainHeader({ user, setUser }) {
   const [anchorEl, setAnchorEl] = useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = useState(null);
+  const [openDialog, setOpenDialog] = useState(false);
 
   // const isMenuOpen = Boolean(anchorEl);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
@@ -163,8 +165,20 @@ export default function MainHeader({ user, setUser }) {
   );
 
   async function signIn() {
-    await signInWithGoogle();
-    getUser(setUser);
+    try {
+      const profile = await signInWithGoogle();
+      console.log(profile);
+      if (!profile.user.phoneNumber) {
+        console.log("here");
+        // <DialogCmp openDialog={true} />;
+        setOpenDialog(true);
+      } else {
+        console.log("nop");
+        getUser(setUser);
+      }
+    } catch (error) {
+      alert("An error ocurred");
+    }
   }
   return (
     <Box sx={{ flexGrow: 1 }}>
@@ -240,6 +254,7 @@ export default function MainHeader({ user, setUser }) {
       </AppBar>
       {renderMobileMenu}
       {/* {renderMenu} */}
+      <DialogCmp openDialog={openDialog} />
     </Box>
   );
 }

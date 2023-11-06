@@ -1,6 +1,7 @@
 import {
   auth,
   browserLocalPersistence,
+  getAdditionalUserInfo,
   provider,
   setPersistence,
   signInWithPopup,
@@ -8,12 +9,9 @@ import {
 } from "config/firebase";
 
 export async function signInWithGoogle() {
-  try {
-    await setPersistence(auth, browserLocalPersistence);
-    await signInWithPopup(auth, provider);
-  } catch (error) {
-    alert("An error occured");
-  }
+  await setPersistence(auth, browserLocalPersistence);
+  const user = await signInWithPopup(auth, provider);
+  return user;
 }
 
 export async function logOut() {

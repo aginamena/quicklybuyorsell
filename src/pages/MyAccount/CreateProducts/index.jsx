@@ -144,8 +144,8 @@ export default function CreateProducts() {
               />
 
               <Typography>
-                Add image and video files of your product. You can add up to 10
-                files. Jpeg or Png or mp4 only
+                Add image files of your product. You can add up to 10 files.
+                Jpeg or Png only
               </Typography>
             </Box>
           </PostImage>
@@ -164,29 +164,15 @@ export default function CreateProducts() {
                   position: "relative",
                 }}
               >
-                {file.type === "image/jpeg" || file.type === "image/png" ? (
-                  <img
-                    src={URL.createObjectURL(file)}
-                    alt="Posting preview"
-                    style={{
-                      width: "100%",
-                      height: "100%",
-                      opacity: "0.7",
-                    }}
-                  />
-                ) : (
-                  <video
-                    controls
-                    style={{
-                      width: "100%",
-                      height: "100%",
-                      opacity: "0.7",
-                    }}
-                  >
-                    <source src={URL.createObjectURL(file)} type="video/mp4" />
-                    Your browser does not support the video tag.
-                  </video>
-                )}
+                <img
+                  src={URL.createObjectURL(file)}
+                  alt="Posting preview"
+                  style={{
+                    width: "100%",
+                    height: "100%",
+                    opacity: "0.7",
+                  }}
+                />
 
                 <div onClick={() => removeFile(index)}>
                   <ClearIcon
