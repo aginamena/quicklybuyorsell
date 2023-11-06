@@ -1,10 +1,13 @@
 import { getDocs, collection, firestore } from "config/firebase";
-export async function getAllProducts(email) {
+import { getProductById } from "pages/util";
+
+export async function getAllUsersProductsByEmail(email) {
   const path = `users/${email}/products`;
   const querySnapshot = await getDocs(collection(firestore, path));
-  const result = [];
+  const promises = [];
   querySnapshot.forEach((doc) => {
-    result.push(doc.data());
+    promises.push(getProductById(doc.id));
   });
-  return result;
+  const allProducts = Promise.all(promises);
+  return allProducts;
 }

@@ -20,12 +20,17 @@ export async function createProduct(specification) {
   specification = {
     ...specification,
     files: listOfFilePaths,
+    productId,
     createdProductTimestamp: new Date().getTime(),
     productStatus: "Not published",
     creatorOfProduct: email,
   };
-  const pathToDocument = `users/${email}/products/${productId}`;
-  await storeProduct(pathToDocument, specification);
+  const usersCollection = `users/${email}/products/${productId}`;
+  const productsCollection = `products/${productId}`;
+  Promise.all([
+    storeProduct(usersCollection, { productId }),
+    storeProduct(productsCollection, specification),
+  ]);
 }
 
 async function storeProduct(pathToDocument, product) {

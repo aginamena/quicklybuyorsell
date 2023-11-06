@@ -5,6 +5,7 @@ import {
   getDocs,
   getFirestore,
   setDoc,
+  getDoc,
 } from "firebase/firestore";
 import { getDownloadURL, getStorage, ref, uploadBytes } from "firebase/storage";
 import {
@@ -50,4 +51,5 @@ export {
   getDownloadURL,
   getDocs,
   collection,
+  getDoc,
 };

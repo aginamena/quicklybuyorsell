@@ -7,18 +7,32 @@ import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
 import currencyFormatter from "currency-formatter";
 import PropTypes from "prop-types";
+import { useState } from "react";
+import PopoverCmp from "./PopoverCmp";
 
-export default function Displaycard({ imagePath, title, amount }) {
+export default function Displaycard({ imagePath, title, amount, productId }) {
   const maximumLengthOfTitle = 17;
   const maximumLengthOfAmount = 15;
   const formattedAmount = currencyFormatter.format(amount, { code: "NGN" });
+  const [popup, setPopup] = useState(null);
+
   return (
     <Card sx={{ width: 200 }}>
       <CardHeader
         action={
-          <IconButton aria-label="settings">
-            <MoreVertIcon />
-          </IconButton>
+          <>
+            <IconButton
+              aria-label="settings"
+              onClick={(e) => setPopup(e.currentTarget)}
+            >
+              <MoreVertIcon />
+            </IconButton>
+            <PopoverCmp
+              productId={productId}
+              popup={popup}
+              setPopup={() => setPopup(null)}
+            />
+          </>
         }
       />
       <CardMedia
@@ -51,4 +65,5 @@ Displaycard.propTypes = {
   title: PropTypes.string.isRequired,
   amount: PropTypes.string.isRequired,
   imagePath: PropTypes.string.isRequired,
+  productId: PropTypes.string.isRequired,
 };

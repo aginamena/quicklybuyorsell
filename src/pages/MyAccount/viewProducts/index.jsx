@@ -1,20 +1,24 @@
 import { Grid, Typography } from "@mui/material";
 import Displaycard from "components/Card";
 import { useEffect, useState } from "react";
-import { getAllProducts } from "./util";
+import { getAllUsersProductsByEmail } from "./util";
 
 export default function ViewProducts({ email }) {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    async function getProducts() {
+    async function getAllProducts() {
       setLoading(true);
-      const allMyProducts = await getAllProducts(email);
-      setProducts(allMyProducts.reverse());
+      try {
+        const allMyProducts = await getAllUsersProductsByEmail(email);
+        setProducts(allMyProducts.reverse());
+      } catch (error) {
+        alert("An error occured");
+      }
       setLoading(false);
     }
-    getProducts();
+    getAllProducts();
   }, []);
 
   if (loading) {
@@ -27,9 +31,14 @@ export default function ViewProducts({ email }) {
 
   return (
     <Grid container spacing={2}>
-      {products.map(({ amount, title, files }, index) => (
+      {products.map(({ amount, title, files, productId }, index) => (
         <Grid key={index} item>
-          <Displaycard amount={amount} title={title} imagePath={files[0]} />
+          <Displaycard
+            productId={productId}
+            amount={amount}
+            title={title}
+            imagePath={files[0]}
+          />
         </Grid>
       ))}
     </Grid>

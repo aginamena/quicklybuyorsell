@@ -56,11 +56,16 @@ export default function CreateProducts() {
 
   async function handleSubmit(e) {
     e.preventDefault();
-    const MINIMUM_LENGTH_OF_DESCRIPTION = 150;
+    const minimumLengthOfDescription = 150;
+    const maximumLengthOfTitle = 64;
     if (specification.description.length < 150) {
       alert(
-        `Description should be more than ${MINIMUM_LENGTH_OF_DESCRIPTION} characters`
+        `Description should be more than ${minimumLengthOfDescription} characters`
       );
+      return;
+    }
+    if (specification.title.length > maximumLengthOfTitle) {
+      alert(`Title should be less than ${maximumLengthOfTitle} characters`);
       return;
     }
     if (
@@ -83,6 +88,7 @@ export default function CreateProducts() {
         loadingHasEnded: true,
       });
     } catch (error) {
+      console.log(error);
       alert("An error occured");
       setLoadingProgress({
         loadingHasStarted: false,
