@@ -8,6 +8,7 @@ import {
   storage,
   uploadBytes,
 } from "config/firebase";
+import { storeDataInFirestore } from "pages/util";
 
 export async function createProduct(specification) {
   const email = auth.currentUser.email;
@@ -25,16 +26,12 @@ export async function createProduct(specification) {
     productStatus: "Not published",
     creatorOfProduct: email,
   };
-  const usersCollection = `users/${email}/products/${productId}`;
+  const myAccountCollection = `myAccount/${email}/products/${productId}`;
   const productsCollection = `products/${productId}`;
   Promise.all([
-    storeProduct(usersCollection, { productId }),
-    storeProduct(productsCollection, specification),
+    storeDataInFirestore(myAccountCollection, { productId }),
+    storeDataInFirestore(productsCollection, specification),
   ]);
-}
-
-async function storeProduct(pathToDocument, product) {
-  await setDoc(doc(firestore, pathToDocument), product);
 }
 
 async function uploadFiles(files, productId, email) {

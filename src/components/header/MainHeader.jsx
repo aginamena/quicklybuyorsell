@@ -16,11 +16,10 @@ import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import { alpha, styled } from "@mui/material/styles";
 import PropTypes from "prop-types";
-import { useState } from "react";
-import { signInWithGoogle } from "services/auth";
-import { getUser } from "services/users";
+import { useState, useEffect } from "react";
 import ProfileIcon from "./ProfileIcon";
-import DialogCmp from "components/DialogCmp";
+import DialogCmp from "./DialogCmp";
+import { signInWithGoogle, storeDataInFirestore } from "pages/util";
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -69,8 +68,9 @@ export default function MainHeader({ user, setUser }) {
   const [anchorEl, setAnchorEl] = useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = useState(null);
   const [openDialog, setOpenDialog] = useState(false);
+  const [number, setNumber] = useState("");
+  const [loading, setLoading] = useState(false);
 
-  // const isMenuOpen = Boolean(anchorEl);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
 
   const handleProfileMenuOpen = (event) => {
@@ -167,19 +167,42 @@ export default function MainHeader({ user, setUser }) {
   async function signIn() {
     try {
       const profile = await signInWithGoogle();
-      console.log(profile);
-      if (!profile.user.phoneNumber) {
-        console.log("here");
-        // <DialogCmp openDialog={true} />;
+      const { phoneNumber, email, uid, displayName, photoURL } = profile.user;
+      setUser({
+        phoneNumber,
+        email,
+        uid,
+        displayName,
+        photoURL,
+      });
+      if (!phoneNumber) {
         setOpenDialog(true);
       } else {
-        console.log("nop");
-        getUser(setUser);
+        createProfile(phoneNumber);
       }
     } catch (error) {
       alert("An error ocurred");
     }
   }
+
+  async function createProfile(number) {
+    //store profile in database
+    const updatedUser = { ...user };
+    updatedUser.phoneNumber = number;
+    const path = `profiles/${updatedUser.email}`;
+    await storeDataInFirestore(path, updatedUser);
+    localStorage.setItem("user", JSON.stringify(updatedUser));
+  }
+
+  useEffect(() => {
+    async function storeData() {
+      await createProfile(number);
+      setLoading(false);
+      setOpenDialog(false);
+    }
+    storeData();
+  }, [number]);
+
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
@@ -254,7 +277,12 @@ export default function MainHeader({ user, setUser }) {
       </AppBar>
       {renderMobileMenu}
       {/* {renderMenu} */}
-      <DialogCmp openDialog={openDialog} />
+      <DialogCmp
+        openDialog={openDialog}
+        setNumber={setNumber}
+        loading={loading}
+        setLoading={setLoading}
+      />
     </Box>
   );
 }

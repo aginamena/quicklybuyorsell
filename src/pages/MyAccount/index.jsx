@@ -8,13 +8,13 @@ import { useState, useEffect } from "react";
 import CreateProducts from "./CreateProducts";
 import ViewProducts from "./ViewProducts";
 import { TabCmp } from "./style";
-import { getUser } from "services/users";
+import { getUser } from "pages/util";
 
 export default function MyAccount() {
   const [user, setUser] = useState({});
 
   useEffect(() => {
-    getUser(setUser);
+    setUser(getUser());
   }, []);
 
   const theme = useTheme();

@@ -2,7 +2,7 @@ import { getDocs, collection, firestore } from "config/firebase";
 import { getProductById } from "pages/util";
 
 export async function getAllUsersProductsByEmail(email) {
-  const path = `users/${email}/products`;
+  const path = `myAccount/${email}/products`;
   const querySnapshot = await getDocs(collection(firestore, path));
   const promises = [];
   querySnapshot.forEach((doc) => {
