@@ -71,24 +71,24 @@ export default function MainHeader({ user, setUser }) {
   const [number, setNumber] = useState("");
   const [loading, setLoading] = useState(false);
 
-  const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
+  // const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
 
-  const handleProfileMenuOpen = (event) => {
-    setAnchorEl(event.currentTarget);
-  };
+  // const handleProfileMenuOpen = (event) => {
+  //   setAnchorEl(event.currentTarget);
+  // };
 
-  const handleMobileMenuClose = () => {
-    setMobileMoreAnchorEl(null);
-  };
+  // const handleMobileMenuClose = () => {
+  //   setMobileMoreAnchorEl(null);
+  // };
 
   // const handleMenuClose = () => {
   //   setAnchorEl(null);
   //   handleMobileMenuClose();
   // };
 
-  const handleMobileMenuOpen = (event) => {
-    setMobileMoreAnchorEl(event.currentTarget);
-  };
+  // const handleMobileMenuOpen = (event) => {
+  //   setMobileMoreAnchorEl(event.currentTarget);
+  // };
 
   // const menuId = "primary-search-account-menu";
   // const renderMenu = (
@@ -112,57 +112,57 @@ export default function MainHeader({ user, setUser }) {
   //   </Menu>
   // );
 
-  const mobileMenuId = "primary-search-account-menu-mobile";
-  const renderMobileMenu = (
-    <Menu
-      anchorEl={mobileMoreAnchorEl}
-      anchorOrigin={{
-        vertical: "top",
-        horizontal: "right",
-      }}
-      id={mobileMenuId}
-      keepMounted
-      transformOrigin={{
-        vertical: "top",
-        horizontal: "right",
-      }}
-      open={isMobileMenuOpen}
-      onClose={handleMobileMenuClose}
-    >
-      <MenuItem>
-        <IconButton size="large" aria-label="show 4 new mails" color="inherit">
-          <Badge badgeContent={4} color="error">
-            <MailIcon />
-          </Badge>
-        </IconButton>
-        <p>Messages</p>
-      </MenuItem>
-      <MenuItem>
-        <IconButton
-          size="large"
-          aria-label="show 17 new notifications"
-          color="inherit"
-        >
-          <Badge badgeContent={17} color="error">
-            <NotificationsIcon />
-          </Badge>
-        </IconButton>
-        <p>Notifications</p>
-      </MenuItem>
-      <MenuItem onClick={handleProfileMenuOpen}>
-        <IconButton
-          size="large"
-          aria-label="account of current user"
-          aria-controls="primary-search-account-menu"
-          aria-haspopup="true"
-          color="inherit"
-        >
-          <AccountCircle />
-        </IconButton>
-        <p>Profile</p>
-      </MenuItem>
-    </Menu>
-  );
+  // const mobileMenuId = "primary-search-account-menu-mobile";
+  // const renderMobileMenu = (
+  //   <Menu
+  //     anchorEl={mobileMoreAnchorEl}
+  //     anchorOrigin={{
+  //       vertical: "top",
+  //       horizontal: "right",
+  //     }}
+  //     id={mobileMenuId}
+  //     keepMounted
+  //     transformOrigin={{
+  //       vertical: "top",
+  //       horizontal: "right",
+  //     }}
+  //     open={isMobileMenuOpen}
+  //     onClose={handleMobileMenuClose}
+  //   >
+  //     <MenuItem>
+  //       <IconButton size="large" aria-label="show 4 new mails" color="inherit">
+  //         <Badge badgeContent={4} color="error">
+  //           <MailIcon />
+  //         </Badge>
+  //       </IconButton>
+  //       <p>Messages</p>
+  //     </MenuItem>
+  //     <MenuItem>
+  //       <IconButton
+  //         size="large"
+  //         aria-label="show 17 new notifications"
+  //         color="inherit"
+  //       >
+  //         <Badge badgeContent={17} color="error">
+  //           <NotificationsIcon />
+  //         </Badge>
+  //       </IconButton>
+  //       <p>Notifications</p>
+  //     </MenuItem>
+  //     <MenuItem onClick={handleProfileMenuOpen}>
+  //       <IconButton
+  //         size="large"
+  //         aria-label="account of current user"
+  //         aria-controls="primary-search-account-menu"
+  //         aria-haspopup="true"
+  //         color="inherit"
+  //       >
+  //         <AccountCircle />
+  //       </IconButton>
+  //       <p>Profile</p>
+  //     </MenuItem>
+  //   </Menu>
+  // );
 
   async function signIn() {
     try {
@@ -196,9 +196,12 @@ export default function MainHeader({ user, setUser }) {
 
   useEffect(() => {
     async function storeData() {
-      await createProfile(number);
-      setLoading(false);
-      setOpenDialog(false);
+      // making sure the user has entered thier phone number inorder to create the profile
+      if (number.length > 0) {
+        await createProfile(number);
+        setLoading(false);
+        setOpenDialog(false);
+      }
     }
     storeData();
   }, [number]);
@@ -250,6 +253,9 @@ export default function MainHeader({ user, setUser }) {
               inputProps={{ "aria-label": "search" }}
             />
           </Search>
+          {/* <Button data-testid="signInBtn" onClick={signIn}>
+            Sign in
+          </Button> */}
           <Box sx={{ display: { xs: "none", md: "flex" } }}>
             {Object.keys(user).length !== 0 ? (
               <div data-testid="profileMenu">
@@ -261,7 +267,7 @@ export default function MainHeader({ user, setUser }) {
               </Button>
             )}
           </Box>
-          <Box sx={{ display: { xs: "flex", md: "none" } }}>
+          {/* <Box sx={{ display: { xs: "flex", md: "none" } }}>
             <IconButton
               size="large"
               aria-label="show more"
@@ -272,10 +278,10 @@ export default function MainHeader({ user, setUser }) {
             >
               <MoreIcon />
             </IconButton>
-          </Box>
+          </Box> */}
         </Toolbar>
       </AppBar>
-      {renderMobileMenu}
+      {/* {renderMobileMenu} */}
       {/* {renderMenu} */}
       <DialogCmp
         openDialog={openDialog}

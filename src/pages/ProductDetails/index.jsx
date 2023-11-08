@@ -1,29 +1,33 @@
-import {
-  Box,
-  Container,
-  Paper,
-  Typography,
-  Grid,
-  Toolbar,
-} from "@mui/material";
+import { Container, Grid, Toolbar, Typography } from "@mui/material";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { getProductDetailsByProductId } from "./util";
+
+import { getFromFirestore } from "pages/util";
+import Contact from "./Contact";
 import ImageGalleryCmp from "./ImageGalleryCmp";
 import Specification from "./Specification";
-import Contact from "./Contact";
 
 export default function ProductDetails() {
   const { productId } = useParams();
   const [productDetails, setProductDetails] = useState({});
+  const [creatorOfProduct, setCreatorOfProduct] = useState({});
   const [loading, setLoading] = useState(false);
+
   useEffect(() => {
     async function getProductDetails() {
       setLoading(true);
-      const details = await getProductDetailsByProductId(productId);
-      console.log(details);
-      setProductDetails(details);
-      setLoading(false);
+      try {
+        const details = await getFromFirestore(`products/${productId}`);
+        const user = await getFromFirestore(
+          `profiles/${details.creatorOfProduct}`
+        );
+        setCreatorOfProduct(user);
+        setProductDetails(details);
+        setLoading(false);
+      } catch (error) {
+        alert("An error occured");
+        setLoading(false);
+      }
     }
     getProductDetails();
   }, []);
@@ -48,6 +52,7 @@ export default function ProductDetails() {
           <Contact
             title={productDetails.title}
             amount={productDetails.amount}
+            creatorOfProduct={creatorOfProduct}
           />
         </Grid>
       </Grid>

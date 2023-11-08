@@ -1,17 +1,24 @@
-import { Box, Container, Toolbar, useMediaQuery } from "@mui/material";
+import { Container, Toolbar, useMediaQuery } from "@mui/material";
 import Tabs from "@mui/material/Tabs";
 import { useTheme } from "@mui/material/styles";
 
 import TabPanel from "components/TabPanel";
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 
+import SnackbarCmp from "components/SnackbarCmp";
+import { MyAccountContext } from "context/appContext";
+import { getUser } from "pages/util";
 import CreateProducts from "./CreateProducts";
 import ViewProducts from "./ViewProducts";
 import { TabCmp } from "./style";
-import { getUser } from "pages/util";
 
 export default function MyAccount() {
   const [user, setUser] = useState({});
+  const [showSnackbarCmp, setShowSnackbarCmp] = useState({
+    shouldShow: false,
+    message: "",
+  });
+  const [showBackdropCmp, setShowBackdropCmp] = useState(false);
 
   useEffect(() => {
     setUser(getUser());
@@ -28,8 +35,17 @@ export default function MyAccount() {
     setValue(newValue);
   };
 
+  const state = {
+    user,
+    setUser,
+    showSnackbarCmp,
+    setShowSnackbarCmp,
+    showBackdropCmp,
+    setShowBackdropCmp,
+  };
+
   return (
-    <>
+    <MyAccountContext.Provider value={state}>
       <Toolbar />
       <Container sx={{ display: { xs: "block", md: "flex" } }}>
         <Tabs
@@ -48,7 +64,8 @@ export default function MyAccount() {
         <TabPanel value={value} index={1}>
           <ViewProducts email={user.email} />
         </TabPanel>
+        <SnackbarCmp />
       </Container>
-    </>
+    </MyAccountContext.Provider>
   );
 }

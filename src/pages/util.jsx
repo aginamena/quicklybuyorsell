@@ -9,8 +9,8 @@ import {
   setDoc,
 } from "config/firebase";
 
-export async function getProductById(productId) {
-  const docRef = doc(firestore, "products", productId);
+export async function getFromFirestore(path) {
+  const docRef = doc(firestore, path);
   const docSnap = await getDoc(docRef);
   if (docSnap.exists()) {
     return docSnap.data();
@@ -19,7 +19,7 @@ export async function getProductById(productId) {
   }
 }
 
-export async function getUser() {
+export function getUser() {
   const user = JSON.parse(localStorage.getItem("user"));
   return user;
 }

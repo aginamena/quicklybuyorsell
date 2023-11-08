@@ -11,23 +11,21 @@ import {
 } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 
+import BackdropCmp from "components/BackdropCmp";
 import SelectCmp from "components/SelectCmp";
-import { useState } from "react";
+import { MyAccountContext } from "context/appContext";
+import { useContext, useState } from "react";
 import {
   getAllCategoryNames,
   getTypeOfCategoryName,
 } from "structure/categories";
 import { PostImage } from "./style";
 import { createProduct } from "./util";
-import BackdropCmp from "components/BackdropCmp";
-import SnackbarCmp from "components/SnackbarCmp";
 
 export default function CreateProducts() {
   const [specification, setSpecification] = useState({ files: [] });
-  const [loadingProgress, setLoadingProgress] = useState({
-    loadingHasStarted: false,
-    loadingHasEnded: false,
-  });
+  const { setShowSnackbarCmp, setShowBackdropCmp } =
+    useContext(MyAccountContext);
 
   const theme = useTheme();
 
@@ -36,7 +34,6 @@ export default function CreateProducts() {
   );
 
   function addFile(newFile) {
-    console.log(newFile.type);
     const MAXIMUM_NUMBER_OF_FILES = 10;
     if (specification.files.length < MAXIMUM_NUMBER_OF_FILES) {
       setSpecification({
@@ -78,22 +75,17 @@ export default function CreateProducts() {
       return;
     }
     try {
-      setLoadingProgress({
-        loadingHasStarted: true,
-        loadingHasEnded: false,
-      });
+      setShowBackdropCmp(true);
       await createProduct(specification);
-      setLoadingProgress({
-        loadingHasStarted: false,
-        loadingHasEnded: true,
+      setShowBackdropCmp(false);
+      setShowSnackbarCmp({
+        shouldShow: true,
+        message:
+          "Your post has been created! Go to View Products to see your products!",
       });
     } catch (error) {
-      console.log(error);
       alert("An error occured");
-      setLoadingProgress({
-        loadingHasStarted: false,
-        loadingHasEnded: false,
-      });
+      setShowBackdropCmp(false);
     }
   }
 
@@ -253,10 +245,7 @@ export default function CreateProducts() {
             Create post
           </Button>
         </Box>
-        {loadingProgress.loadingHasStarted && <BackdropCmp />}
-        {loadingProgress.loadingHasEnded && (
-          <SnackbarCmp message="Your post has been created! Go to View Products to see your products!" />
-        )}
+        <BackdropCmp />
       </form>
     </>
   );

@@ -1,9 +1,9 @@
-import { Paper, Typography, Box } from "@mui/material";
 import WhatsAppIcon from "@mui/icons-material/WhatsApp";
+import { Paper, Typography } from "@mui/material";
 import currencyFormatter from "currency-formatter";
 import { Link } from "react-router-dom";
 
-export default function Contact({ title, amount }) {
+export default function Contact({ title, amount, creatorOfProduct }) {
   const formattedAmount = currencyFormatter.format(amount, { code: "NGN" });
 
   return (
@@ -16,17 +16,21 @@ export default function Contact({ title, amount }) {
       </Typography>
       <Typography
         variant="h5"
-        style={{ marginBottom: "30px", marginTop: "30px" }}
+        style={{
+          wordBreak: "break-word",
+          marginBottom: "30px",
+          marginTop: "30px",
+        }}
       >
         {formattedAmount}
       </Typography>
       <Typography
         style={{ color: "#dedede", marginBottom: "15px", textAlign: "center" }}
       >
-        Contact the seller
+        Contact {creatorOfProduct.displayName}
       </Typography>
       <Link
-        to="https://wa.me/2348100000000"
+        to={`https://wa.me/${creatorOfProduct.phoneNumber}`}
         style={{
           display: "flex",
           alignItems: "center",

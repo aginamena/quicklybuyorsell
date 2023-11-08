@@ -1,29 +1,33 @@
 import MuiAlert from "@mui/material/Alert";
 import Snackbar from "@mui/material/Snackbar";
-import React, { useState } from "react";
+import { MyAccountContext } from "context/appContext";
+import React, { useContext } from "react";
 
 const Alert = React.forwardRef(function Alert(props, ref) {
   return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
 });
 
-export default function SnackbarCmp({ message }) {
-  const [open, setOpen] = useState(true);
+export default function SnackbarCmp() {
+  const { showSnackbarCmp, setShowSnackbarCmp } = useContext(MyAccountContext);
 
   const handleClose = (event, reason) => {
     if (reason === "clickaway") {
       return;
     }
-    setOpen(false);
+    setShowSnackbarCmp({
+      shouldShow: false,
+      message: "",
+    });
   };
 
   return (
-    <Snackbar open={open} onClose={handleClose}>
+    <Snackbar open={showSnackbarCmp.shouldShow} onClose={handleClose}>
       <Alert
         onClose={handleClose}
         severity="success"
         sx={{ width: "100%", color: "white" }}
       >
-        {message}
+        {showSnackbarCmp.message}
       </Alert>
     </Snackbar>
   );
