@@ -13,7 +13,7 @@ import { useTheme } from "@mui/material/styles";
 
 import BackdropCmp from "components/BackdropCmp";
 import SelectCmp from "components/SelectCmp";
-import { MyAccountContext } from "context/appContext";
+import { AppContext } from "context/appContext";
 import { useContext, useState } from "react";
 import {
   getAllCategoryNames,
@@ -24,8 +24,7 @@ import { createProduct } from "./util";
 
 export default function CreateProducts() {
   const [specification, setSpecification] = useState({ files: [] });
-  const { setShowSnackbarCmp, setShowBackdropCmp } =
-    useContext(MyAccountContext);
+  const { setShowSnackbarCmp, setShowBackdropCmp } = useContext(AppContext);
 
   const theme = useTheme();
 

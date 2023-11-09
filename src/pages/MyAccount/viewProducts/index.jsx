@@ -1,9 +1,9 @@
-import { Grid, Typography } from "@mui/material";
-import Displaycard from "components/Card";
+import { Typography } from "@mui/material";
+import DisplayProducts from "components/DisplayProducts";
+import { getAllProductsFromFirestore, getUser } from "pages/util";
 import { useEffect, useState } from "react";
-import { getAllUsersProductsByEmail } from "./util";
 
-export default function ViewProducts({ email }) {
+export default function ViewProducts() {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(false);
 
@@ -11,7 +11,9 @@ export default function ViewProducts({ email }) {
     async function getAllProducts() {
       setLoading(true);
       try {
-        const allMyProducts = await getAllUsersProductsByEmail(email);
+        const { email } = getUser();
+        const path = `myAccount/${email}/products`;
+        const allMyProducts = await getAllProductsFromFirestore(path);
         setProducts(allMyProducts.reverse());
       } catch (error) {
         alert("An error occured");
@@ -29,18 +31,5 @@ export default function ViewProducts({ email }) {
     return <Typography>You don't have any products to display</Typography>;
   }
 
-  return (
-    <Grid container spacing={2}>
-      {products.map(({ amount, title, files, productId }, index) => (
-        <Grid key={index} item>
-          <Displaycard
-            productId={productId}
-            amount={amount}
-            title={title}
-            imagePath={files[0]}
-          />
-        </Grid>
-      ))}
-    </Grid>
-  );
+  return <DisplayProducts products={products} isPrivate={true} />;
 }

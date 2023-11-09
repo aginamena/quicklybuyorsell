@@ -1,6 +1,6 @@
 import MuiAlert from "@mui/material/Alert";
 import Snackbar from "@mui/material/Snackbar";
-import { MyAccountContext } from "context/appContext";
+import { AppContext } from "context/appContext";
 import React, { useContext } from "react";
 
 const Alert = React.forwardRef(function Alert(props, ref) {
@@ -8,7 +8,7 @@ const Alert = React.forwardRef(function Alert(props, ref) {
 });
 
 export default function SnackbarCmp() {
-  const { showSnackbarCmp, setShowSnackbarCmp } = useContext(MyAccountContext);
+  const { showSnackbarCmp, setShowSnackbarCmp } = useContext(AppContext);
 
   const handleClose = (event, reason) => {
     if (reason === "clickaway") {

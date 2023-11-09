@@ -1,9 +1,9 @@
 import { Backdrop, CircularProgress } from "@mui/material/";
-import { MyAccountContext } from "context/appContext";
+import { AppContext } from "context/appContext";
 import { useContext } from "react";
 
 export default function BackdropCmp() {
-  const { showBackdropCmp } = useContext(MyAccountContext);
+  const { showBackdropCmp } = useContext(AppContext);
   return (
     <Backdrop
       sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }}

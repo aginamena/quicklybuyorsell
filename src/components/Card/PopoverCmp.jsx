@@ -1,20 +1,21 @@
 import Popover from "@mui/material/Popover";
 import Typography from "@mui/material/Typography";
 import BackdropCmp from "components/BackdropCmp";
-import { MyAccountContext } from "context/appContext";
-import { storeDataInFirestore } from "pages/util";
+import { AppContext } from "context/appContext";
+import { storeDataInFirestore, updateDataInFirestore } from "pages/util";
 import PropTypes from "prop-types";
 import { useContext } from "react";
 import { Link } from "react-router-dom";
 
 export default function PopoverCmp({ popup, setPopup, productId }) {
-  const { setShowSnackbarCmp, setShowBackdropCmp } =
-    useContext(MyAccountContext);
+  const { setShowSnackbarCmp, setShowBackdropCmp } = useContext(AppContext);
 
   async function addToReview() {
     setShowBackdropCmp(true);
-    const path = `productsForReview/${productId}`;
-    await storeDataInFirestore(path, { productId });
+    await updateDataInFirestore(`products/${productId}`, {
+      productStatus: "On review",
+    });
+    await storeDataInFirestore(`productsForReview/${productId}`, { productId });
     setShowBackdropCmp(false);
     setShowSnackbarCmp({
       shouldShow: true,
