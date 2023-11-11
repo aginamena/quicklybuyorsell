@@ -7,7 +7,7 @@ import {
 } from "@mui/material";
 import PropTypes from "prop-types";
 
-export default function HowItWorksCard({ title, imagePath, description }) {
+export default function HowItWorksCard({ title, imagePath }) {
   return (
     <Card sx={{ maxWidth: 345 }}>
       <CardActionArea>
@@ -22,9 +22,6 @@ export default function HowItWorksCard({ title, imagePath, description }) {
           <Typography gutterBottom component="div">
             {title}
           </Typography>
-          <Typography variant="body2" color="text.secondary">
-            {description}
-          </Typography>
         </CardContent>
       </CardActionArea>
     </Card>
@@ -33,6 +30,5 @@ export default function HowItWorksCard({ title, imagePath, description }) {
 
 HowItWorksCard.propTypes = {
   title: PropTypes.string.isRequired,
-  description: PropTypes.string.isRequired,
   imagePath: PropTypes.string.isRequired,
 };

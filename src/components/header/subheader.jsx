@@ -8,6 +8,7 @@ import MenuIcon from "@mui/icons-material/Menu";
 import { Paper } from "@mui/material";
 import { styled, alpha } from "@mui/material/styles";
 import { getAllCategoryNames } from "structure/categories";
+import { Link } from "react-router-dom";
 
 const PaperCmp = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.background.paper,
@@ -23,9 +24,13 @@ export default function SubHeader() {
           }}
         >
           {getAllCategoryNames().map((category, index) => (
-            <Typography color="inherit" key={index} component="div">
+            <Link
+              key={index}
+              style={{ textDecoration: "none", color: "white" }}
+              to={`published-products/${category}`}
+            >
               {category}
-            </Typography>
+            </Link>
           ))}
         </Toolbar>
       </AppBar>

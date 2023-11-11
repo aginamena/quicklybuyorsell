@@ -24,7 +24,7 @@ const categories = [
     Type: [],
   },
   {
-    Name: "Electrical gadgets/applicances",
+    Name: "Electrical applicances",
     Type: [],
   },
 ];

@@ -244,7 +244,7 @@ export default function MainHeader({ user, setUser }) {
             Sell on TrustChain
           </Typography>
 
-          <Search>
+          {/* <Search>
             <SearchIconWrapper>
               <SearchIcon />
             </SearchIconWrapper>
@@ -252,7 +252,7 @@ export default function MainHeader({ user, setUser }) {
               placeholder="Search for products…"
               inputProps={{ "aria-label": "search" }}
             />
-          </Search>
+          </Search> */}
           {/* <Button data-testid="signInBtn" onClick={signIn}>
             Sign in
           </Button> */}

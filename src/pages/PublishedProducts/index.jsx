@@ -1,28 +1,23 @@
 import { Container, Toolbar, Typography } from "@mui/material";
 import DisplayProducts from "components/DisplayProducts";
-import { getAllProductsFromFirestore, getUser } from "pages/util";
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import { getAllPublishedProducts } from "./util";
 
-export default function ProductsForReview() {
+export default function PublishedProducts() {
+  const { selectedCategory } = useParams();
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     async function getProducts() {
-      try {
-        setLoading(true);
-        const productsForReview = await getAllProductsFromFirestore(
-          "productsForReview"
-        );
-        setProducts(productsForReview);
-      } catch (error) {
-        alert("An error occured");
-      }
+      setLoading(true);
+      const publishedProducts = await getAllPublishedProducts(selectedCategory);
+      setProducts(publishedProducts);
       setLoading(false);
     }
     getProducts();
   }, []);
-
   return (
     <Container>
       <Toolbar />
