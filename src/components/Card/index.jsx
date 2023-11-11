@@ -17,6 +17,7 @@ export default function Displaycard({
   amount,
   productId,
   isPrivate,
+  productStatus,
 }) {
   const maximumLengthOfTitle = 17;
   const maximumLengthOfAmount = 15;
@@ -42,6 +43,7 @@ export default function Displaycard({
                 <PopoverCmp
                   productId={productId}
                   popup={popup}
+                  productStatus={productStatus}
                   setPopup={() => setPopup(null)}
                 />
               </>
@@ -74,11 +76,15 @@ export default function Displaycard({
     </Link>
   );
 }
+Displaycard.defaultProps = {
+  isPrivate: false,
+};
 
 Displaycard.propTypes = {
   title: PropTypes.string.isRequired,
   amount: PropTypes.string.isRequired,
   imagePath: PropTypes.string.isRequired,
-  productId: PropTypes.string.isRequired,
-  isPrivate: PropTypes.bool.isRequired,
+  productId: PropTypes.string,
+  isPrivate: PropTypes.bool,
+  productStatus: PropTypes.string,
 };

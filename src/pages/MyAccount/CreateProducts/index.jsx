@@ -80,7 +80,7 @@ export default function CreateProducts() {
       setShowSnackbarCmp({
         shouldShow: true,
         message:
-          "Your post has been created! Go to View Products to see your products!",
+          "The post has been created! Go to View Products to see your products!",
       });
     } catch (error) {
       alert("An error occured");
