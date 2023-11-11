@@ -1,31 +1,23 @@
 const categories = [
   {
-    Name: "Clothes",
+    Name: "Footwares",
     Type: ["Male", "Female"],
   },
   {
-    Name: "Footwares",
-    Type: ["Shoes", "Sandals", "Slippers"],
+    Name: "Jackets",
+    Type: ["Male", "Female"],
   },
   {
-    Name: "Bags",
-    Type: ["Shoulder bags", "Handbags"],
+    Name: "Shirts",
+    Type: ["Male", "Female"],
   },
   {
-    Name: "Fashion accessories",
-    Type: [],
+    Name: "Shorts",
+    Type: ["Male", "Female"],
   },
   {
-    Name: "Computers",
-    Type: ["Desktop computers", "Laptop computers"],
-  },
-  {
-    Name: "Phones",
-    Type: [],
-  },
-  {
-    Name: "Electrical applicances",
-    Type: [],
+    Name: "Trousers",
+    Type: ["Male", "Female"],
   },
 ];
 export function getAllCategoryNames() {

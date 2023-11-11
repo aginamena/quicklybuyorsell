@@ -20,7 +20,7 @@ export default function SubHeader() {
         <Toolbar
           sx={{
             // display: "flex",
-            justifyContent: "space-between",
+            justifyContent: "space-evenly",
           }}
         >
           {getAllCategoryNames().map((category, index) => (

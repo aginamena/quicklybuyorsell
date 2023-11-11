@@ -236,7 +236,7 @@ export default function MainHeader({ user, setUser }) {
             component="div"
             sx={{ display: { xs: "none", sm: "block" } }}
           >
-            TrustChain
+            Top Fashion Products
           </Typography>
           <Typography
           // marginLeft="10px"
