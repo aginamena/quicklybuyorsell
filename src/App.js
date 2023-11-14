@@ -12,6 +12,8 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Root from "./pages/Root";
 import { darkTheme } from "./theme";
 import PublishedProducts from "pages/PublishedProducts";
+import TermsOfUse from "pages/TermsOfUse";
+import AboutUs from "pages/AboutUs";
 
 function App() {
   const [showSnackbarCmp, setShowSnackbarCmp] = useState({
@@ -42,7 +44,7 @@ function App() {
             />
             <Route
               exact
-              path="productsForReview"
+              path="products-for-review"
               element={<ProductsForReview />}
             />
             <Route
@@ -50,6 +52,8 @@ function App() {
               path="published-products/:selectedCategory"
               element={<PublishedProducts />}
             />
+            <Route exact path="terms-of-use" element={<TermsOfUse />} />
+            <Route exact path="about-us" element={<AboutUs />} />
           </Routes>
           <SnackbarCmp />
         </BrowserRouter>

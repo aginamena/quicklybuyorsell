@@ -1,47 +1,19 @@
-import FacebookIcon from "@mui/icons-material/Facebook";
-import InstagramIcon from "@mui/icons-material/Instagram";
-import LinkedInIcon from "@mui/icons-material/LinkedIn";
-import YouTubeIcon from "@mui/icons-material/YouTube";
-import { Box, Button } from "@mui/material";
-
-import React from "react";
-
-import { useNavigate } from "react-router-dom";
-import { FooterCmp, LinkCmp } from "./style";
+import { Container } from "@mui/material";
+import { Link, useNavigate } from "react-router-dom";
 
 function Footer() {
-  const navigate = useNavigate();
   return (
-    <FooterCmp>
-      <Box>
-        <Button style={{ color: "white" }} onClick={() => navigate("aboutus")}>
-          About us
-        </Button>
-        <Button style={{ color: "white" }} onClick={() => navigate("faqs")}>
-          FAQs
-        </Button>
-        <Button
-          style={{ color: "white" }}
-          onClick={() => navigate("contactus")}
-        >
-          Contact us
-        </Button>
-      </Box>
-      <Box>
-        <LinkCmp href="https://www.linkedin.com/company/joinedafrica/">
-          <LinkedInIcon />
-        </LinkCmp>
-        <LinkCmp href="https://www.instagram.com/joinedafrica/">
-          <InstagramIcon />
-        </LinkCmp>
-        <LinkCmp href="https://www.facebook.com/JoinedAfrica">
-          <FacebookIcon />
-        </LinkCmp>
-        <LinkCmp href="https://www.youtube.com/@JoinedAfrica/">
-          <YouTubeIcon />
-        </LinkCmp>
-      </Box>
-    </FooterCmp>
+    <Container style={{ marginTop: "20px", marginBottom: "20px" }}>
+      <Link
+        to="/terms-of-use"
+        style={{ color: "white", textDecoration: "none", marginRight: "20px" }}
+      >
+        Terms of use
+      </Link>
+      <Link to="/about-us" style={{ color: "white", textDecoration: "none" }}>
+        About us
+      </Link>
+    </Container>
   );
 }
 
