@@ -8,23 +8,19 @@ import {
 } from "@mui/material";
 import { red } from "@mui/material/colors";
 
-export default function ReviewsAndRatingsCard() {
+export default function ReviewsAndRatingsCard({ src, name, description }) {
   return (
     <Card sx={{ maxWidth: 345 }}>
       <CardHeader
         avatar={
-          <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
-            R
-          </Avatar>
+          <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe" src={src} />
         }
-        title="Shrimp and Chorizo Paella"
+        title={name}
       />
       <CardContent>
         <Rating defaultValue={5} readOnly />
         <Typography variant="body2" color="text.secondary">
-          This impressive paella is a perfect party dish and a fun meal to cook
-          together with your guests. Add 1 cup of frozen peas along with the
-          mussels, if you like.
+          {description}
         </Typography>
       </CardContent>
     </Card>

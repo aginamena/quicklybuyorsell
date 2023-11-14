@@ -20,6 +20,7 @@ import { useState, useEffect } from "react";
 import ProfileIcon from "./ProfileIcon";
 import DialogCmp from "./DialogCmp";
 import { signInWithGoogle, storeDataInFirestore } from "pages/util";
+import { Link } from "react-router-dom";
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -207,19 +208,20 @@ export default function MainHeader({ user, setUser }) {
   }, [number]);
 
   return (
-    <Box sx={{ flexGrow: 1 }}>
+    <Box>
       <AppBar position="static">
         <Toolbar sx={{ justifyContent: "space-between" }}>
-          <IconButton
-            size="large"
-            edge="start"
-            color="inherit"
-            aria-label="open drawer"
-            sx={{ mr: 2, display: { xs: "block", md: "none" } }}
-          >
-            <MenuIcon />
-          </IconButton>
-          {/* <Box display="flex" alignItems="center">
+          <Box>
+            <IconButton
+              size="large"
+              edge="start"
+              color="inherit"
+              aria-label="open drawer"
+              sx={{ mr: 2, display: { xs: "block", md: "none" } }}
+            >
+              <MenuIcon />
+            </IconButton>
+            {/* <Box display="flex" alignItems="center">
             <Typography
               variant="h6"
               noWrap
@@ -230,19 +232,28 @@ export default function MainHeader({ user, setUser }) {
             </Typography>
             <Typography marginLeft="10px">Sell on TrustChain</Typography>
           </Box> */}
-          <Typography
-            variant="h6"
-            noWrap
-            component="div"
-            sx={{ display: { xs: "none", sm: "block" } }}
-          >
-            Top Fashion Products
-          </Typography>
-          <Typography
-          // marginLeft="10px"
-          >
-            Sell on TrustChain
-          </Typography>
+            <Box style={{ display: "flex", alignItems: "center" }}>
+              <Link style={{ textDecoration: "none", color: "white" }} to="/">
+                <Typography
+                  variant="h6"
+                  noWrap
+                  component="div"
+                  sx={{
+                    display: { xs: "none", sm: "block" },
+                    // marginRight: "30px",
+                  }}
+                >
+                  Top Fashion Products
+                </Typography>
+              </Link>
+
+              {/* <Typography
+              // marginLeft="10px"
+              >
+                Sell your products
+              </Typography> */}
+            </Box>
+          </Box>
 
           {/* <Search>
             <SearchIconWrapper>

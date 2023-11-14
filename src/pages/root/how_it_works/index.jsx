@@ -13,7 +13,7 @@ export default function HowItWorks() {
 
       <Box sx={{ display: "flex", justifyContent: "space-evenly" }}>
         <HowItWorksCard
-          title="Explore a wide selection of verified fashion and electrical products"
+          title="Explore a wide selection of verified fashion and electrical products."
           imagePath="root/how_it_works/view_wide_selection_of_products.jpg"
         />
         <HowItWorksCard

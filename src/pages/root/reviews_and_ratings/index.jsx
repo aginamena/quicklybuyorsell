@@ -11,9 +11,13 @@ export default function ReveiwsAndRatings() {
         What our customers say
       </Typography>
       <Box style={{ display: "flex", justifyContent: "space-evenly" }}>
-        <ReviewsAndRatingsCard />
-        <ReviewsAndRatingsCard />
-        <ReviewsAndRatingsCard />
+        <ReviewsAndRatingsCard
+          src="root/reviews_and_ratings/image1.jpeg"
+          name="Ngozi Samuels"
+          description="As a fashion seller, it's very easy to advertise my products for sale in Top fashion products. One of the reasons i like Top fashion products is that you will only find high quality products for sale here."
+        />
+        <ReviewsAndRatingsCard src="" name="" description="" />
+        <ReviewsAndRatingsCard src="" name="" description="" />
       </Box>
     </>
   );
