@@ -14,6 +14,7 @@ import { darkTheme } from "./theme";
 import PublishedProducts from "pages/PublishedProducts";
 import TermsOfUse from "pages/TermsOfUse";
 import AboutUs from "pages/AboutUs";
+import DialogCmp from "components/DialogCmp";
 
 function App() {
   const [showSnackbarCmp, setShowSnackbarCmp] = useState({
@@ -21,11 +22,14 @@ function App() {
     message: "",
   });
   const [showBackdropCmp, setShowBackdropCmp] = useState(false);
+  const [showDialogCmp, setShowDialogCmp] = useState(false);
   const state = {
     showSnackbarCmp,
     setShowSnackbarCmp,
     showBackdropCmp,
     setShowBackdropCmp,
+    showDialogCmp,
+    setShowDialogCmp,
   };
 
   return (
@@ -56,6 +60,7 @@ function App() {
             <Route exact path="about-us" element={<AboutUs />} />
           </Routes>
           <SnackbarCmp />
+          <DialogCmp />
         </BrowserRouter>
       </ThemeProvider>
     </AppContext.Provider>

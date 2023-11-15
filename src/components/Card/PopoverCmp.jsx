@@ -88,12 +88,12 @@ export default function PopoverCmp({
             </Typography>
           </Link>
         ))}
-      <Link style={{ textDecoration: "none", color: "white" }}>
+      {/* <Link style={{ textDecoration: "none", color: "white" }}>
         <Typography sx={{ p: 2 }}>Boost product</Typography>
       </Link>
       <Link style={{ textDecoration: "none", color: "white" }}>
         <Typography sx={{ p: 2 }}>Product analytics</Typography>
-      </Link>
+      </Link> */}
       {/* {status === "Not published" && (
         <Link style={{ textDecoration: "none", color: "white" }}>
           <Typography sx={{ p: 2 }}>Delete product</Typography>

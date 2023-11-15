@@ -16,11 +16,12 @@ import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import { alpha, styled } from "@mui/material/styles";
 import PropTypes from "prop-types";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import ProfileIcon from "./ProfileIcon";
 import DialogCmp from "./DialogCmp";
 import { signInWithGoogle, storeDataInFirestore } from "pages/util";
 import { Link } from "react-router-dom";
+import { AppContext } from "context/appContext";
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -71,6 +72,8 @@ export default function MainHeader({ user, setUser }) {
   const [openDialog, setOpenDialog] = useState(false);
   const [number, setNumber] = useState("");
   const [loading, setLoading] = useState(false);
+
+  const { setShowDialogCmp } = useContext(AppContext);
 
   // const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
 
@@ -240,18 +243,22 @@ export default function MainHeader({ user, setUser }) {
                   component="div"
                   sx={{
                     display: { xs: "none", sm: "block" },
-                    // marginRight: "30px",
+                    marginRight: "30px",
                   }}
                 >
                   Top Fashion Products
                 </Typography>
               </Link>
-
-              {/* <Typography
-              // marginLeft="10px"
+              <Link
+                onClick={() => setShowDialogCmp(true)}
+                style={{ textDecoration: "none", color: "white" }}
               >
-                Sell your products
-              </Typography> */}
+                <Typography
+                // marginLeft="10px"
+                >
+                  Sell your products
+                </Typography>
+              </Link>
             </Box>
           </Box>
 

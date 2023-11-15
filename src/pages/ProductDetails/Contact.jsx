@@ -1,10 +1,20 @@
 import WhatsAppIcon from "@mui/icons-material/WhatsApp";
 import { Paper, Typography } from "@mui/material";
 import currencyFormatter from "currency-formatter";
-import { Link } from "react-router-dom";
+import { getUser } from "pages/util";
+import { Link, useNavigate } from "react-router-dom";
 
 export default function Contact({ title, amount, creatorOfProduct }) {
   const formattedAmount = currencyFormatter.format(amount, { code: "NGN" });
+  const naviage = useNavigate();
+  function handleClick() {
+    const currentUser = getUser();
+    if (!currentUser) {
+      alert("To contact the seller, please sign in to your account.");
+      return;
+    }
+    naviage(`https://wa.me/${creatorOfProduct.phoneNumber}`);
+  }
 
   return (
     <Paper style={{ padding: "30px" }}>
@@ -30,7 +40,7 @@ export default function Contact({ title, amount, creatorOfProduct }) {
         Contact {creatorOfProduct.displayName}
       </Typography>
       <Link
-        to={`https://wa.me/${creatorOfProduct.phoneNumber}`}
+        onClick={handleClick}
         style={{
           display: "flex",
           alignItems: "center",
@@ -48,6 +58,12 @@ export default function Contact({ title, amount, creatorOfProduct }) {
         </Typography>
         <WhatsAppIcon />
       </Link>
+      <small>
+        Do not have whatsapp? download it{" "}
+        <Link to="https://www.whatsapp.com/download" style={{ color: "white" }}>
+          here
+        </Link>
+      </small>
     </Paper>
   );
 }
