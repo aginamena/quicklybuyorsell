@@ -29,7 +29,7 @@ export default function Displaycard({
       style={{ textDecoration: "none" }}
       to={!isPrivate && `../product-details/${productId}`}
     >
-      <Card sx={{ width: 200 }}>
+      <Card>
         <CardHeader
           action={
             isPrivate && (

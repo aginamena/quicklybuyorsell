@@ -9,7 +9,7 @@ import PropTypes from "prop-types";
 
 export default function HowItWorksCard({ title, imagePath }) {
   return (
-    <Card sx={{ maxWidth: 345 }}>
+    <Card>
       <CardActionArea>
         <CardMedia
           component="img"

@@ -73,7 +73,7 @@ export default function MainHeader({ user, setUser }) {
   const [number, setNumber] = useState("");
   const [loading, setLoading] = useState(false);
 
-  const { setShowDialogCmp } = useContext(AppContext);
+  const { setShowDialogCmp, setShowDrawerCmp } = useContext(AppContext);
 
   // const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
 
@@ -220,6 +220,7 @@ export default function MainHeader({ user, setUser }) {
               edge="start"
               color="inherit"
               aria-label="open drawer"
+              onClick={() => setShowDrawerCmp(true)}
               sx={{ mr: 2, display: { xs: "block", md: "none" } }}
             >
               <MenuIcon />
@@ -242,7 +243,7 @@ export default function MainHeader({ user, setUser }) {
                   noWrap
                   component="div"
                   sx={{
-                    display: { xs: "none", sm: "block" },
+                    // display: { xs: "none", sm: "block" },
                     marginRight: "30px",
                   }}
                 >
@@ -274,7 +275,9 @@ export default function MainHeader({ user, setUser }) {
           {/* <Button data-testid="signInBtn" onClick={signIn}>
             Sign in
           </Button> */}
-          <Box sx={{ display: { xs: "none", md: "flex" } }}>
+          <Box
+          // sx={{ display: { xs: "none", md: "flex" } }}
+          >
             {Object.keys(user).length !== 0 ? (
               <div data-testid="profileMenu">
                 <ProfileIcon src={user.photoURL} />

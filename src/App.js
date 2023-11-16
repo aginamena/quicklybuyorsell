@@ -15,6 +15,7 @@ import PublishedProducts from "pages/PublishedProducts";
 import TermsOfUse from "pages/TermsOfUse";
 import AboutUs from "pages/AboutUs";
 import DialogCmp from "components/DialogCmp";
+import DrawerCmp from "components/DrawerCmp";
 
 function App() {
   const [showSnackbarCmp, setShowSnackbarCmp] = useState({
@@ -23,6 +24,7 @@ function App() {
   });
   const [showBackdropCmp, setShowBackdropCmp] = useState(false);
   const [showDialogCmp, setShowDialogCmp] = useState(false);
+  const [showDrawerCmp, setShowDrawerCmp] = useState(false);
   const state = {
     showSnackbarCmp,
     setShowSnackbarCmp,
@@ -30,6 +32,8 @@ function App() {
     setShowBackdropCmp,
     showDialogCmp,
     setShowDialogCmp,
+    showDrawerCmp,
+    setShowDrawerCmp,
   };
 
   return (
@@ -61,6 +65,7 @@ function App() {
           </Routes>
           <SnackbarCmp />
           <DialogCmp />
+          <DrawerCmp />
         </BrowserRouter>
       </ThemeProvider>
     </AppContext.Provider>
