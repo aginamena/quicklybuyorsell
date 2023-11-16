@@ -15,25 +15,23 @@ const PaperCmp = styled(Paper)(({ theme }) => ({
 }));
 export default function SubHeader() {
   return (
-    <div data-testid="SubHeader">
-      <AppBar position="static">
-        <Toolbar
-          sx={{
-            // display: "flex",
-            justifyContent: "space-evenly",
-          }}
-        >
-          {getAllCategoryNames().map((category, index) => (
-            <Link
-              key={index}
-              style={{ textDecoration: "none", color: "white" }}
-              to={`published-products/${category}`}
-            >
-              {category}
-            </Link>
-          ))}
-        </Toolbar>
-      </AppBar>
-    </div>
+    <AppBar position="static" sx={{ display: { xs: "none", sm: "block" } }}>
+      <Toolbar
+        sx={{
+          // display: "flex",
+          justifyContent: "space-evenly",
+        }}
+      >
+        {getAllCategoryNames().map((category, index) => (
+          <Link
+            key={index}
+            style={{ textDecoration: "none", color: "white" }}
+            to={`published-products/${category}`}
+          >
+            {category}
+          </Link>
+        ))}
+      </Toolbar>
+    </AppBar>
   );
 }

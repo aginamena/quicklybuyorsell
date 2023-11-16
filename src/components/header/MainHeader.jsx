@@ -75,99 +75,6 @@ export default function MainHeader({ user, setUser }) {
 
   const { setShowDialogCmp, setShowDrawerCmp } = useContext(AppContext);
 
-  // const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
-
-  // const handleProfileMenuOpen = (event) => {
-  //   setAnchorEl(event.currentTarget);
-  // };
-
-  // const handleMobileMenuClose = () => {
-  //   setMobileMoreAnchorEl(null);
-  // };
-
-  // const handleMenuClose = () => {
-  //   setAnchorEl(null);
-  //   handleMobileMenuClose();
-  // };
-
-  // const handleMobileMenuOpen = (event) => {
-  //   setMobileMoreAnchorEl(event.currentTarget);
-  // };
-
-  // const menuId = "primary-search-account-menu";
-  // const renderMenu = (
-  //   <Menu
-  //     anchorEl={anchorEl}
-  //     anchorOrigin={{
-  //       vertical: "top",
-  //       horizontal: "right",
-  //     }}
-  //     id={menuId}
-  //     keepMounted
-  //     transformOrigin={{
-  //       vertical: "top",
-  //       horizontal: "right",
-  //     }}
-  //     open={isMenuOpen}
-  //     onClose={handleMenuClose}
-  //   >
-  //     <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
-  //     <MenuItem onClick={handleMenuClose}>My account</MenuItem>
-  //   </Menu>
-  // );
-
-  // const mobileMenuId = "primary-search-account-menu-mobile";
-  // const renderMobileMenu = (
-  //   <Menu
-  //     anchorEl={mobileMoreAnchorEl}
-  //     anchorOrigin={{
-  //       vertical: "top",
-  //       horizontal: "right",
-  //     }}
-  //     id={mobileMenuId}
-  //     keepMounted
-  //     transformOrigin={{
-  //       vertical: "top",
-  //       horizontal: "right",
-  //     }}
-  //     open={isMobileMenuOpen}
-  //     onClose={handleMobileMenuClose}
-  //   >
-  //     <MenuItem>
-  //       <IconButton size="large" aria-label="show 4 new mails" color="inherit">
-  //         <Badge badgeContent={4} color="error">
-  //           <MailIcon />
-  //         </Badge>
-  //       </IconButton>
-  //       <p>Messages</p>
-  //     </MenuItem>
-  //     <MenuItem>
-  //       <IconButton
-  //         size="large"
-  //         aria-label="show 17 new notifications"
-  //         color="inherit"
-  //       >
-  //         <Badge badgeContent={17} color="error">
-  //           <NotificationsIcon />
-  //         </Badge>
-  //       </IconButton>
-  //       <p>Notifications</p>
-  //     </MenuItem>
-  //     <MenuItem onClick={handleProfileMenuOpen}>
-  //       <IconButton
-  //         size="large"
-  //         aria-label="account of current user"
-  //         aria-controls="primary-search-account-menu"
-  //         aria-haspopup="true"
-  //         color="inherit"
-  //       >
-  //         <AccountCircle />
-  //       </IconButton>
-  //       <p>Profile</p>
-  //     </MenuItem>
-  //   </Menu>
-  // );
-
   async function signIn() {
     try {
       const profile = await signInWithGoogle();
@@ -214,28 +121,18 @@ export default function MainHeader({ user, setUser }) {
     <Box>
       <AppBar position="static">
         <Toolbar sx={{ justifyContent: "space-between" }}>
-          <Box>
+          <Box style={{ display: "flex" }}>
             <IconButton
               size="large"
               edge="start"
               color="inherit"
               aria-label="open drawer"
               onClick={() => setShowDrawerCmp(true)}
-              sx={{ mr: 2, display: { xs: "block", md: "none" } }}
+              sx={{ mr: 2, display: { xs: "block", sm: "none" } }}
             >
               <MenuIcon />
             </IconButton>
-            {/* <Box display="flex" alignItems="center">
-            <Typography
-              variant="h6"
-              noWrap
-              component="div"
-              sx={{ display: { xs: "none", sm: "block" } }}
-            >
-              TrustChain
-            </Typography>
-            <Typography marginLeft="10px">Sell on TrustChain</Typography>
-          </Box> */}
+
             <Box style={{ display: "flex", alignItems: "center" }}>
               <Link style={{ textDecoration: "none", color: "white" }} to="/">
                 <Typography
@@ -243,41 +140,27 @@ export default function MainHeader({ user, setUser }) {
                   noWrap
                   component="div"
                   sx={{
-                    // display: { xs: "none", sm: "block" },
                     marginRight: "30px",
                   }}
                 >
                   Top Fashion Products
                 </Typography>
               </Link>
-              <Link
+
+              <Typography
                 onClick={() => setShowDialogCmp(true)}
-                style={{ textDecoration: "none", color: "white" }}
+                sx={{
+                  textDecoration: "underline",
+                  cursor: "pointer",
+                  display: { xs: "none", sm: "block" },
+                }}
               >
-                <Typography
-                // marginLeft="10px"
-                >
-                  Sell your products
-                </Typography>
-              </Link>
+                Sell your products
+              </Typography>
             </Box>
           </Box>
 
-          {/* <Search>
-            <SearchIconWrapper>
-              <SearchIcon />
-            </SearchIconWrapper>
-            <StyledInputBase
-              placeholder="Search for products…"
-              inputProps={{ "aria-label": "search" }}
-            />
-          </Search> */}
-          {/* <Button data-testid="signInBtn" onClick={signIn}>
-            Sign in
-          </Button> */}
-          <Box
-          // sx={{ display: { xs: "none", md: "flex" } }}
-          >
+          <Box>
             {Object.keys(user).length !== 0 ? (
               <div data-testid="profileMenu">
                 <ProfileIcon src={user.photoURL} />
@@ -288,22 +171,8 @@ export default function MainHeader({ user, setUser }) {
               </Button>
             )}
           </Box>
-          {/* <Box sx={{ display: { xs: "flex", md: "none" } }}>
-            <IconButton
-              size="large"
-              aria-label="show more"
-              aria-controls={mobileMenuId}
-              aria-haspopup="true"
-              onClick={handleMobileMenuOpen}
-              color="inherit"
-            >
-              <MoreIcon />
-            </IconButton>
-          </Box> */}
         </Toolbar>
       </AppBar>
-      {/* {renderMobileMenu} */}
-      {/* {renderMenu} */}
       <DialogCmp
         openDialog={openDialog}
         setNumber={setNumber}

@@ -75,11 +75,11 @@ export default function ProductDetails() {
         <>
           <Grid container spacing={3}>
             {productDetails.files && (
-              <Grid item md={8}>
+              <Grid item md={8} xs={12}>
                 <ImageGalleryCmp images={productDetails.files} />
               </Grid>
             )}
-            <Grid item md={4}>
+            <Grid item md={4} xs={12}>
               <Contact
                 title={productDetails.title}
                 amount={productDetails.amount}
