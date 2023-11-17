@@ -9,7 +9,7 @@ import ProductDetails from "pages/ProductDetails";
 import ProductsForReview from "pages/productsForReview";
 import { useState } from "react";
 import { BrowserRouter, Route, Routes, HashRouter } from "react-router-dom";
-import Root from "./pages/Roots";
+import Root from "./pages/Root";
 import { darkTheme } from "./theme";
 import PublishedProducts from "pages/PublishedProducts";
 import TermsOfUse from "pages/TermsOfUse";
