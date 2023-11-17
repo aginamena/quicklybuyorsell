@@ -3,7 +3,7 @@ import { Box, Drawer, Toolbar, Typography } from "@mui/material";
 import { AppContext } from "context/appContext";
 import { useContext } from "react";
 import { Link } from "react-router-dom";
-import { categories } from "structure/categories";
+import { getAllCategoryNames } from "structure/categories";
 
 export default function DrawerCmp() {
   const { showDrawerCmp, setShowDrawerCmp, setShowDialogCmp } =
@@ -18,16 +18,16 @@ export default function DrawerCmp() {
       <Toolbar />
       <Typography variant="h5">All categories</Typography>
       <Box style={{ width: "250px" }}>
-        {categories.map(({ Name }, index) => (
+        {getAllCategoryNames().map((category, index) => (
           <div key={index} style={{ marginTop: "20px" }}>
             <Link
-              to={`published-products/${Name}`}
+              to={`published-products/${category}`}
               style={{
                 color: "white",
                 textDecoration: "none",
               }}
             >
-              <Typography>{Name}</Typography>
+              <Typography>{category}</Typography>
             </Link>
           </div>
         ))}

@@ -17,7 +17,7 @@ export default function PublishedProducts() {
       setLoading(false);
     }
     getProducts();
-  }, []);
+  }, [location.pathname]);
   return (
     <Container>
       <Toolbar />

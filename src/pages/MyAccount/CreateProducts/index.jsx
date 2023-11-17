@@ -54,6 +54,10 @@ export default function CreateProducts() {
     e.preventDefault();
     const minimumLengthOfDescription = 150;
     const maximumLengthOfTitle = 64;
+    if (specification.files.length == 0) {
+      alert("Enter atleast 1 image");
+      return;
+    }
     if (specification.description.length < 150) {
       alert(
         `Description should be more than ${minimumLengthOfDescription} characters`
@@ -143,6 +147,7 @@ export default function CreateProducts() {
           <Divider />
           <Stack
             direction={ismediumScreenSizeAndBelow ? "column" : "row"}
+            style={{ flexWrap: "wrap" }}
             spacing={2}
           >
             {specification.files.map((file, index) => (
