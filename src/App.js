@@ -8,7 +8,7 @@ import MyAccount from "pages/MyAccount";
 import ProductDetails from "pages/ProductDetails";
 import ProductsForReview from "pages/productsForReview";
 import { useState } from "react";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Routes, HashRouter } from "react-router-dom";
 import Root from "./pages/Root";
 import { darkTheme } from "./theme";
 import PublishedProducts from "pages/PublishedProducts";
@@ -40,7 +40,7 @@ function App() {
     <AppContext.Provider value={state}>
       <ThemeProvider theme={darkTheme}>
         <CssBaseline />
-        <BrowserRouter>
+        <HashRouter>
           <Header currentPath={window.location.pathname} />
           <Routes>
             <Route exact path="/" element={<Root />} />
@@ -66,7 +66,7 @@ function App() {
           <SnackbarCmp />
           <DialogCmp />
           <DrawerCmp />
-        </BrowserRouter>
+        </HashRouter>
       </ThemeProvider>
     </AppContext.Provider>
   );
