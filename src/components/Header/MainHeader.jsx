@@ -143,7 +143,7 @@ export default function MainHeader({ user, setUser }) {
                     marginRight: "30px",
                   }}
                 >
-                  Top Fashion Products
+                  QBOS
                 </Typography>
               </Link>
 

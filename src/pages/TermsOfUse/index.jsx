@@ -70,11 +70,10 @@ export default function TermsOfUse() {
       <Box style={{ marginBottom: "30px" }}>
         <Typography> Last Updated: November 13th, 2023</Typography>
         <Typography style={{ marginTop: "20px", marginBottom: "20px" }}>
-          Welcome to Top fashion products!
+          Welcome to Quickly Buy or Sell (QBOS)!
         </Typography>
         <Typography>
-          Please read these Terms of Use ("Terms") carefully before using Top
-          fashion products.
+          Please read these Terms of Use ("Terms") carefully before using QBOS.
         </Typography>
       </Box>
       <Accordion
@@ -163,9 +162,9 @@ export default function TermsOfUse() {
         </AccordionSummary>
         <AccordionDetails>
           <Typography>
-            (1) All content on the Service is the property of Top fashion
-            products and is protected by copyright, trademark, and other
-            intellectual property laws.
+            (1) All content on the Service is the property of QBOS and is
+            protected by copyright, trademark, and other intellectual property
+            laws.
           </Typography>
           <Typography>
             (2) By submitting content to the Service, you grant us a

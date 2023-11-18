@@ -1,4 +1,4 @@
-import { Box, Drawer, Toolbar, Typography } from "@mui/material";
+import { Box, Divider, Drawer, Toolbar, Typography } from "@mui/material";
 
 import { AppContext } from "context/appContext";
 import { useContext } from "react";
@@ -16,6 +16,14 @@ export default function DrawerCmp() {
       onClose={() => setShowDrawerCmp(false)}
     >
       <Toolbar />
+      <Typography>Quickly Buy or Sell (QBOS)</Typography>
+      <Divider
+        sx={{
+          borderBottomWidth: "5px",
+          marginTop: "20px",
+          marginBottom: "20px",
+        }}
+      />
       <Typography variant="h5">All categories</Typography>
       <Box style={{ width: "250px" }}>
         {getAllCategoryNames().map((category, index) => (

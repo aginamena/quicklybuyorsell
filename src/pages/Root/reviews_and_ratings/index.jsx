@@ -7,13 +7,13 @@ export default function ReveiwsAndRatings() {
       src: "root/reviews_and_ratings/ngozi_samuels.jpeg",
       name: "Ngozi Samuels",
       description:
-        "As a fashion seller, it's very easy to advertise my products for sale here. One of the reasons i like Top fashion products is that you will only find high quality products for sale here.",
+        "As a fashion seller, it's very easy to advertise my products for sale here. One of the reasons i like QBOS products is that you will only find high quality products for sale here.",
     },
     {
       src: "root/reviews_and_ratings/celeb_johnson.jpeg",
       name: "Celeb Johnson",
       description:
-        "Connecting with sellers your local sellers is the fastest way to view and receive products, instead of waiting for days for the products to be shipped to you for review. One of the reasons i keep coming back to Top fashion products is that their site is easy to use.",
+        "Connecting with sellers your local sellers is the fastest way to view and receive products, instead of waiting for days for the products to be shipped to you for review. One of the reasons i keep coming back to QBOS is that their site is easy to use.",
     },
     {
       src: "root/reviews_and_ratings/mercy_adams.jpeg",

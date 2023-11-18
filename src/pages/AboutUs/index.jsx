@@ -6,20 +6,20 @@ export default function AboutUs() {
       <Toolbar />
       <Typography variant="h5"> About Us</Typography>
       <Typography style={{ marginBottom: "30px", marginTop: "30px" }}>
-        Welcome to Top fashion products, where style meets convenience! We are
-        your go-to online destination for top-quality fashion products in
-        Nigeria, ranging from trendy footwear to stylish jackets, shirts,
-        shorts, and trousers.
+        Welcome to Quckly Buy or Sell (QBOS), where style meets convenience! We
+        are your go-to online destination for top-quality products in Nigeria,
+        ranging from trendy footwear to stylish jackets, shirts, shorts, and
+        trousers.
       </Typography>
       <Box style={{ marginBottom: "30px" }}>
         <Typography variant="h6" style={{ marginBottom: "15px" }}>
           Our Commitment to Quality
         </Typography>
         <Typography>
-          we take pride in curating a collection of top-quality fashion
-          products. Every item featured on our platform undergoes a rigorous
-          verification process before it is released, ensuring that you receive
-          nothing but the best.
+          we take pride in curating a collection of top-quality products. Every
+          item featured on our platform undergoes a rigorous verification
+          process before it is released, ensuring that you receive nothing but
+          the best.
         </Typography>
       </Box>
       <Box style={{ marginBottom: "30px" }}>
@@ -67,11 +67,6 @@ export default function AboutUs() {
           experience.
         </Typography>
       </Box>
-      <Typography>
-        Join us and experience a seamless blend of quality, personalization, and
-        local connections in the world of online fashion. Discover, connect, and
-        shop with confidence!
-      </Typography>
     </Container>
   );
 }

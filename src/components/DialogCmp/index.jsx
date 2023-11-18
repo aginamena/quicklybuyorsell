@@ -23,7 +23,7 @@ export default function DialogCmp() {
         <DialogContentText id="alert-dialog-slide-description">
           <Typography>
             <span style={{ color: "white" }}>First</span>, you have to be signed
-            into Top fashion products.
+            into QBOS.
           </Typography>
           <Typography>
             <span style={{ color: "white" }}>Second</span>, go to My Accounts
