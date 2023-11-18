@@ -20,7 +20,7 @@ export default function DialogCmp() {
     <Dialog open={showDialogCmp} TransitionComponent={Transition} keepMounted>
       <DialogTitle>We'll connect you with buyers through Whatsapp</DialogTitle>
       <DialogContent>
-        <DialogContentText id="alert-dialog-slide-description">
+        <DialogContentText id="alert-dialog-slide-description" component="div">
           <Typography>
             <span style={{ color: "white" }}>First</span>, you have to be signed
             into QBOS.
