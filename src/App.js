@@ -1,12 +1,12 @@
 import { CssBaseline } from "@mui/material";
 import { ThemeProvider } from "@mui/material/styles";
 
-import Header from "components/Headers";
+import Header from "components/Header";
 import SnackbarCmp from "components/SnackbarCmp";
 import { AppContext } from "context/appContext";
 import MyAccount from "pages/MyAccount";
 import ProductDetails from "pages/ProductDetails";
-import ProductsForReview from "pages/ProductsForReview";
+import ProductsForReview from "pages/ProductsForReviews";
 import { useState } from "react";
 import { BrowserRouter, Route, Routes, HashRouter } from "react-router-dom";
 import Root from "./pages/Root";
