@@ -43,7 +43,7 @@ function App() {
     <AppContext.Provider value={state}>
       <ThemeProvider theme={darkTheme}>
         <CssBaseline />
-        <BrowserRouter>
+        <HashRouter>
           <Header />
           <Routes>
             <Route exact path="/" element={<Root />} />
@@ -82,7 +82,7 @@ function App() {
           <SnackbarCmp />
           <DialogCmp />
           <DrawerCmp />
-        </BrowserRouter>
+        </HashRouter>
       </ThemeProvider>
     </AppContext.Provider>
   );
