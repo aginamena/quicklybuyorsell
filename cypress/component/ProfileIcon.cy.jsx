@@ -1,5 +1,5 @@
 import { BrowserRouter } from "react-router-dom";
-import ProfileIcon from "components/Header/ProfileIcon";
+import ProfileIcon from "components/Headers/ProfileIcon";
 
 describe("Profile Icon component", () => {
   const path = "http://localhost/path/to/image";

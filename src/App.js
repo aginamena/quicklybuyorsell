@@ -1,12 +1,12 @@
 import { CssBaseline } from "@mui/material";
 import { ThemeProvider } from "@mui/material/styles";
 
-import Header from "components/Header";
+import Header from "components/Headers";
 import SnackbarCmp from "components/SnackbarCmp";
 import { AppContext } from "context/appContext";
 import MyAccount from "pages/MyAccount";
 import ProductDetails from "pages/ProductDetails";
-import ProductsForReview from "pages/productsForReview";
+import ProductsForReview from "pages/ProductsForReview";
 import { useState } from "react";
 import { BrowserRouter, Route, Routes, HashRouter } from "react-router-dom";
 import Root from "./pages/Root";
@@ -41,7 +41,7 @@ function App() {
       <ThemeProvider theme={darkTheme}>
         <CssBaseline />
         <HashRouter>
-          <Header currentPath={window.location.pathname} />
+          <Header />
           <Routes>
             <Route exact path="/" element={<Root />} />
             <Route exact path="my-account" element={<MyAccount />} />
