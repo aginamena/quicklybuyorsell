@@ -5,7 +5,7 @@ import { useTheme } from "@mui/material/styles";
 import TabPanel from "components/TabPanel";
 import React, { useState } from "react";
 import CreateProducts from "./CreateProducts";
-import ViewProducts from "./ViewProduct";
+import ViewProducts from "./ViewProducts";
 import { TabCmp } from "./style";
 
 export default function MyAccount() {
