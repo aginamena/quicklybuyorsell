@@ -16,6 +16,9 @@ import TermsOfUse from "pages/TermsOfUse";
 import AboutUs from "pages/AboutUs";
 import DialogCmp from "components/DialogCmp";
 import DrawerCmp from "components/DrawerCmp";
+import ProtectedRoute from "components/ProtectedRoute";
+import { isUserAdmin } from "pages/ProductDetails/util";
+import { getUser } from "pages/util";
 
 function App() {
   const [showSnackbarCmp, setShowSnackbarCmp] = useState({
@@ -40,11 +43,19 @@ function App() {
     <AppContext.Provider value={state}>
       <ThemeProvider theme={darkTheme}>
         <CssBaseline />
-        <HashRouter>
+        <BrowserRouter>
           <Header />
           <Routes>
             <Route exact path="/" element={<Root />} />
-            <Route exact path="my-account" element={<MyAccount />} />
+            <Route
+              exact
+              path="my-account"
+              element={
+                <ProtectedRoute isAuthorized={getUser()}>
+                  <MyAccount />
+                </ProtectedRoute>
+              }
+            />
             <Route
               exact
               path="product-details/:productId"
@@ -53,20 +64,25 @@ function App() {
             <Route
               exact
               path="products-for-review"
-              element={<ProductsForReview />}
+              element={
+                <ProtectedRoute isAuthorized={isUserAdmin()}>
+                  <ProductsForReview />
+                </ProtectedRoute>
+              }
             />
             <Route
               exact
               path="published-products/:selectedCategory"
               element={<PublishedProducts />}
             />
+
             <Route exact path="terms-of-use" element={<TermsOfUse />} />
             <Route exact path="about-us" element={<AboutUs />} />
           </Routes>
           <SnackbarCmp />
           <DialogCmp />
           <DrawerCmp />
-        </HashRouter>
+        </BrowserRouter>
       </ThemeProvider>
     </AppContext.Provider>
   );

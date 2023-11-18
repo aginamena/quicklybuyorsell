@@ -7,7 +7,7 @@ import {
 
 export function isUserAdmin() {
   const currentUser = getUser();
-  return currentUser && currentUser.email === "aginamena5@gmail.com";
+  return currentUser && currentUser.email === process.env.REACT_APP_ADMIN;
 }
 
 export async function acceptProduct(productId) {
