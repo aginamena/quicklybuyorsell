@@ -29,8 +29,7 @@ export default function AboutUs() {
         <Typography>
           Your style is unique, and so is your shopping experience on our
           platform. We understand the importance of personalization, and that's
-          why we tailor our content to match your interests. Discover fashion
-          that resonates with your individual taste and preferences.
+          why we tailor our content to match your interests.
         </Typography>
       </Box>
       <Box style={{ marginBottom: "30px" }}>
@@ -60,11 +59,10 @@ export default function AboutUs() {
           Our Mission
         </Typography>
         <Typography>
-          We're on a mission to make sure buyers can quickly find the fashion
-          products they need, and sellers can be easily and quickly contacted by
-          buyers for their fashion products on our platform. We believe in
-          fostering seamless connections and simplifying the fashion shopping
-          experience.
+          We're on a mission to make sure buyers can quickly find the products
+          they need, and sellers can be easily and quickly contacted by buyers
+          for their products on our platform. We believe in fostering seamless
+          connections and simplifying the shopping experience.
         </Typography>
       </Box>
     </Container>
