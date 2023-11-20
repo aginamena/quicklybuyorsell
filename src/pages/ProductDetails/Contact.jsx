@@ -6,14 +6,19 @@ import { Link, useNavigate } from "react-router-dom";
 
 export default function Contact({ title, amount, creatorOfProduct }) {
   const formattedAmount = currencyFormatter.format(amount, { code: "NGN" });
-  const naviage = useNavigate();
   function handleClick() {
     const currentUser = getUser();
     if (!currentUser) {
       alert("To contact the seller, please sign in to your account.");
       return;
     }
-    naviage(`https://wa.me/${creatorOfProduct.phoneNumber}`);
+    const message = "Hello, I'm interested in your products!";
+    window.open(
+      `https://wa.me/${creatorOfProduct.phoneNumber}?text=${encodeURIComponent(
+        message
+      )}`,
+      "_blank"
+    );
   }
 
   return (

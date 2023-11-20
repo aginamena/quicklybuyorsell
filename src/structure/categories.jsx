@@ -4,7 +4,7 @@ const categories = [
     Type: ["Male", "Female"],
   },
   {
-    Name: "Jackets",
+    Name: "Bags",
     Type: ["Male", "Female"],
   },
   {
@@ -12,11 +12,7 @@ const categories = [
     Type: ["Male", "Female"],
   },
   {
-    Name: "Shorts",
-    Type: ["Male", "Female"],
-  },
-  {
-    Name: "Trousers",
+    Name: "Skirts-and-Trousers",
     Type: ["Male", "Female"],
   },
 ];
