@@ -20,7 +20,7 @@ import {
   signOut,
   getAdditionalUserInfo,
 } from "firebase/auth";
-
+import { getAnalytics } from "firebase/analytics";
 const firebaseConfig = {
   apiKey: process.env.REACT_APP_API_KEY,
   authDomain: process.env.REACT_APP_AUTH_DOMAIN,
@@ -36,6 +36,7 @@ const provider = new GoogleAuthProvider();
 const firestore = getFirestore(app);
 const auth = getAuth();
 const storage = getStorage(app);
+getAnalytics(app);
 
 export {
   firestore,
