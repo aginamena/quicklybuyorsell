@@ -7,6 +7,8 @@ import { Divider } from "@mui/material";
 export default function Root() {
   return (
     <>
+      {/* description: Discover and buy with ease from local sellers in your
+      neighborhood. image: here */}
       <TodaysProducts />
       <HowItWorks />
       <ReviewsAndRatings />

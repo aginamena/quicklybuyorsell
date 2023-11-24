@@ -7,6 +7,7 @@ import React, { useState } from "react";
 import CreateProducts from "./CreateProducts";
 import ViewProducts from "./ViewProducts";
 import { TabCmp } from "./style";
+import { MyAccountContext } from "context/appContext";
 
 export default function MyAccount() {
   const theme = useTheme();
@@ -14,33 +15,40 @@ export default function MyAccount() {
     theme.breakpoints.down("md")
   );
 
-  const [value, setValue] = useState(0);
+  const [tabPosition, setTabPosition] = useState(0);
+  const [editProductId, setEditProductId] = useState("");
 
   const handleChange = (_, newValue) => {
-    setValue(newValue);
+    setTabPosition(newValue);
+  };
+
+  const state = {
+    editProductId,
+    setTabPosition,
+    setEditProductId,
   };
 
   return (
-    <React.Fragment>
+    <MyAccountContext.Provider value={state}>
       <Toolbar />
       <Container sx={{ display: { xs: "block", md: "flex" } }}>
         <Tabs
           orientation={ismediumScreenSizeAndBelow ? "horizontal" : "vertical"}
           variant={ismediumScreenSizeAndBelow ? "scrollable" : "fullWidth"}
-          value={value}
+          value={tabPosition}
           onChange={handleChange}
           allowScrollButtonsMobile
         >
           <TabCmp label="Create Products" data-testid="Create Products" />
           <TabCmp label="View Products" data-testid="View Products" />
         </Tabs>
-        <TabPanel value={value} index={0}>
+        <TabPanel value={tabPosition} index={0}>
           <CreateProducts />
         </TabPanel>
-        <TabPanel value={value} index={1}>
+        <TabPanel value={tabPosition} index={1}>
           <ViewProducts />
         </TabPanel>
       </Container>
-    </React.Fragment>
+    </MyAccountContext.Provider>
   );
 }
