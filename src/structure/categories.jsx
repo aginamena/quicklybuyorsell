@@ -1,6 +1,6 @@
 const categories = [
   {
-    Name: "Footwares",
+    Name: "Footwears",
     Type: ["Male", "Female"],
   },
   {
