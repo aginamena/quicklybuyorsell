@@ -6,8 +6,15 @@ import Select from "@mui/material/Select";
 import PropTypes from "prop-types";
 import { useState } from "react";
 
-export default function SelectCmp({ name, menuItems, handleSelect }) {
-  const [state, setState] = useState("");
+export default function SelectCmp({
+  name,
+  menuItems,
+  handleSelect,
+  previousSelectedValue,
+}) {
+  const [state, setState] = useState(
+    previousSelectedValue ? previousSelectedValue : ""
+  );
 
   const handleChange = (event) => {
     setState(event.target.value);
@@ -20,6 +27,7 @@ export default function SelectCmp({ name, menuItems, handleSelect }) {
         <InputLabel data-testid="inputLabel">{name}</InputLabel>
         <Select
           value={state}
+          defaultValue={state}
           data-testid={name}
           required
           onChange={handleChange}
@@ -39,4 +47,5 @@ SelectCmp.propTypes = {
   name: PropTypes.string.isRequired,
   menuItems: PropTypes.array.isRequired,
   handleSelect: PropTypes.func.isRequired,
+  previousSelectedValue: PropTypes.string,
 };

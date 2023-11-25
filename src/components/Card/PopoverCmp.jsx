@@ -1,7 +1,7 @@
 import Popover from "@mui/material/Popover";
 import Typography from "@mui/material/Typography";
 import BackdropCmp from "components/BackdropCmp";
-import { AppContext } from "context/appContext";
+import { AppContext, MyAccountContext } from "context/appContext";
 import {
   deleteDataInFirestore,
   storeDataInFirestore,
@@ -18,6 +18,7 @@ export default function PopoverCmp({
   productStatus,
 }) {
   const { setShowSnackbarCmp, setShowBackdropCmp } = useContext(AppContext);
+  const { setEditProductId, setTabPosition } = useContext(MyAccountContext);
 
   const [status, setProductStatus] = useState(productStatus);
 
@@ -49,6 +50,12 @@ export default function PopoverCmp({
     setProductStatus("Not published");
   }
 
+  function editProduct() {
+    const tabPosition = 0;
+    setTabPosition(tabPosition);
+    setEditProductId(productId);
+  }
+
   return (
     <Popover
       open={Boolean(popup)}
@@ -66,14 +73,22 @@ export default function PopoverCmp({
         <Typography sx={{ p: 2 }}>View created product</Typography>
       </Link>
       {(status === "Not published" && (
-        <Link
-          style={{ textDecoration: "none", color: "white" }}
-          onClick={addToReview}
-        >
-          <Typography sx={{ p: 2 }}>
-            Publish product to the marketplace
-          </Typography>
-        </Link>
+        <>
+          <Link
+            style={{ textDecoration: "none", color: "white" }}
+            onClick={editProduct}
+          >
+            <Typography sx={{ p: 2 }}>Edit product</Typography>
+          </Link>
+          <Link
+            style={{ textDecoration: "none", color: "white" }}
+            onClick={addToReview}
+          >
+            <Typography sx={{ p: 2 }}>
+              Publish product to the marketplace
+            </Typography>
+          </Link>
+        </>
       )) ||
         (status === "On review" && (
           <Typography sx={{ p: 2 }}>Product on review</Typography>

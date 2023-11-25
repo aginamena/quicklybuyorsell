@@ -9,7 +9,13 @@ import {
   updateDoc,
   deleteDoc,
 } from "firebase/firestore";
-import { getDownloadURL, getStorage, ref, uploadBytes } from "firebase/storage";
+import {
+  getDownloadURL,
+  getStorage,
+  ref,
+  uploadBytes,
+  deleteObject,
+} from "firebase/storage";
 import {
   GoogleAuthProvider,
   getAuth,
@@ -59,4 +65,5 @@ export {
   getAdditionalUserInfo,
   updateDoc,
   deleteDoc,
+  deleteObject,
 };
