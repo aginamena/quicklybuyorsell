@@ -22,6 +22,7 @@ export async function createProduct(specification) {
       ...specification,
       files: listOfFilePaths,
     };
+    delete specification.originalFiles;
     await updateDataInFirestore(productsCollection, specification);
   } else {
     specification = {
@@ -46,8 +47,7 @@ async function uploadFiles(specification, email, productId) {
   if (specification.originalFiles) {
     for (var i = 0; i < specification.originalFiles.length; i++) {
       if (!specification.files.includes(specification.originalFiles[i])) {
-        const fileId = getFileIdFromStorage(specification.originalFiles[i]);
-        console.log(fileId);
+        const fileId = extractFileIdFromPath(specification.originalFiles[i]);
         await deleteFromStorage(`products/${email}/${productId}/${fileId}`);
       }
     }
@@ -66,10 +66,10 @@ async function uploadFiles(specification, email, productId) {
   );
 }
 
-function getFileIdFromStorage(filePath) {
-  const fileIdRegex = /(.{17})(?=\?)/;
-  const match = filePath.match(fileIdRegex);
-  const fileId = match && match[1];
+function extractFileIdFromPath(filePath) {
+  const parts = filePath.split("2F");
+  const index = parts[3].indexOf("?");
+  const fileId = parts[3].substring(0, index);
   return fileId;
 }
 
@@ -87,10 +87,10 @@ async function getUploadedFileUrl(path) {
 }
 
 function getUniqueId() {
-  const uniqueId =
+  return (
     Date.now().toString(36) +
     Math.floor(
       Math.pow(10, 12) + Math.random() * 9 * Math.pow(10, 12)
-    ).toString(36);
-  return uniqueId.substring(0, 18);
+    ).toString(36)
+  );
 }

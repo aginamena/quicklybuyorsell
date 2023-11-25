@@ -93,6 +93,7 @@ export default function CreateProducts() {
         shouldShow: true,
         message,
       });
+      //After the user has edited thier product, set the edit product state to false
       setIsEditingProduct(false);
     } catch (error) {
       alert("An error occured");
@@ -119,6 +120,11 @@ export default function CreateProducts() {
   }
   return (
     <form data-testid="Create Products Cmp" onSubmit={handleSubmit}>
+      {isEditingProduct && (
+        <Typography variant="h6" style={{ textAlign: "center" }}>
+          You are currently editing your product
+        </Typography>
+      )}
       <Typography style={{ marginBottom: "20px" }}>Product category</Typography>
       <SelectCmp
         name="Select category"
