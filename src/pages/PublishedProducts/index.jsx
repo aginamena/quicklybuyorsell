@@ -1,27 +1,31 @@
 import { Container, Toolbar, Typography } from "@mui/material";
 import DisplayProducts from "components/DisplayProducts";
-import { useEffect, useState } from "react";
+import { useQuery } from "react-query";
 import { useParams } from "react-router-dom";
 import { getAllPublishedProducts } from "./util";
 
 export default function PublishedProducts() {
   const { selectedCategory } = useParams();
-  const [products, setProducts] = useState([]);
-  const [loading, setLoading] = useState(false);
 
-  useEffect(() => {
-    async function getProducts() {
-      setLoading(true);
-      const publishedProducts = await getAllPublishedProducts(selectedCategory);
-      setProducts(publishedProducts);
-      setLoading(false);
-    }
-    getProducts();
-  }, [location.pathname]);
+  const {
+    data: products,
+    isLoading,
+    isError,
+  } = useQuery(
+    ["PublishedProducts", selectedCategory],
+    () => getAllPublishedProducts(selectedCategory),
+    { enabled: !!selectedCategory } // Ensures the query is only executed when selectedCategory is available
+  );
+
+  if (isError) {
+    alert("An error occured");
+    return null;
+  }
+
   return (
     <Container>
       <Toolbar />
-      {loading ? (
+      {isLoading ? (
         <Typography>Loading...</Typography>
       ) : (
         <DisplayProducts products={products} isPrivate={false} />
