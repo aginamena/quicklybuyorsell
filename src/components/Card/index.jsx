@@ -8,8 +8,8 @@ import Typography from "@mui/material/Typography";
 import currencyFormatter from "currency-formatter";
 import PropTypes from "prop-types";
 import { useState } from "react";
-import PopoverCmp from "./PopoverCmp";
 import { Link } from "react-router-dom";
+import PopoverCmp from "./PopoverCmp";
 
 export default function Displaycard({
   imagePath,

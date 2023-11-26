@@ -1,32 +1,31 @@
 import { Container, Toolbar, Typography } from "@mui/material";
 import DisplayProducts from "components/DisplayProducts";
-import { getAllProductsFromFirestore, getUser } from "pages/util";
-import { useState, useEffect } from "react";
+import { getAllProductsFromFirestore } from "pages/util";
+import { useQuery } from "react-query";
 
 export default function ProductsForReview() {
-  const [products, setProducts] = useState([]);
-  const [loading, setLoading] = useState(false);
+  async function getProductsForReview() {
+    const productsForReview = await getAllProductsFromFirestore(
+      "productsForReview"
+    );
+    return productsForReview;
+  }
 
-  useEffect(() => {
-    async function getProducts() {
-      try {
-        setLoading(true);
-        const productsForReview = await getAllProductsFromFirestore(
-          "productsForReview"
-        );
-        setProducts(productsForReview);
-      } catch (error) {
-        alert("An error occured");
-      }
-      setLoading(false);
-    }
-    getProducts();
-  }, []);
+  const {
+    data: products,
+    isLoading,
+    isError,
+  } = useQuery("ProductForReview", getProductsForReview);
+
+  if (isError) {
+    alert("An error occured");
+    return null;
+  }
 
   return (
     <Container>
       <Toolbar />
-      {loading ? (
+      {isLoading ? (
         <Typography>Loading...</Typography>
       ) : (
         <DisplayProducts products={products} isPrivate={false} />

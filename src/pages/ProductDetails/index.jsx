@@ -1,48 +1,41 @@
 import {
-  Container,
   Box,
   Button,
+  Container,
   Grid,
   Toolbar,
   Typography,
 } from "@mui/material";
-import { useContext, useEffect, useState } from "react";
+import { useContext } from "react";
 import { useParams } from "react-router-dom";
 
-import { getFromFirestore, getUser, updateDataInFirestore } from "pages/util";
+import BackdropCmp from "components/BackdropCmp";
+import { AppContext } from "context/appContext";
+import { getFromFirestore } from "pages/util";
+import { useQuery } from "react-query";
 import Contact from "./Contact";
 import ImageGalleryCmp from "./ImageGalleryCmp";
 import Specification from "./Specification";
 import { acceptProduct, isUserAdmin, rejectProduct } from "./util";
-import BackdropCmp from "components/BackdropCmp";
-import { AppContext } from "context/appContext";
 
 export default function ProductDetails() {
   const { productId } = useParams();
-  const [productDetails, setProductDetails] = useState({});
-  const [creatorOfProduct, setCreatorOfProduct] = useState({});
-  const [loading, setLoading] = useState(false);
 
   const { setShowSnackbarCmp, setShowBackdropCmp } = useContext(AppContext);
 
-  useEffect(() => {
-    async function getProductDetails() {
-      setLoading(true);
-      try {
-        const details = await getFromFirestore(`products/${productId}`);
-        const user = await getFromFirestore(
-          `profiles/${details.creatorOfProduct}`
-        );
-        setCreatorOfProduct(user);
-        setProductDetails(details);
-        setLoading(false);
-      } catch (error) {
-        alert("An error occured");
-        setLoading(false);
-      }
-    }
-    getProductDetails();
-  }, []);
+  async function getProductDetails() {
+    const details = await getFromFirestore(`products/${productId}`);
+    const creatorOfProduct = await getFromFirestore(
+      `profiles/${details.creatorOfProduct}`
+    );
+    return { ...details, creatorOfProduct };
+  }
+
+  const {
+    data: productDetails,
+    isLoading,
+    isError,
+  } = useQuery(["ProductDetails", productId], getProductDetails);
 
   const isUserAuthourized = isUserAdmin();
 
@@ -66,10 +59,15 @@ export default function ProductDetails() {
     });
   }
 
+  if (isError) {
+    alert("An error occured");
+    return null;
+  }
+
   return (
     <Container style={{ marginBottom: "50px" }}>
       <Toolbar />
-      {loading ? (
+      {isLoading ? (
         <Typography>Loading...</Typography>
       ) : (
         <>
@@ -83,7 +81,7 @@ export default function ProductDetails() {
               <Contact
                 title={productDetails.title}
                 amount={productDetails.amount}
-                creatorOfProduct={creatorOfProduct}
+                creatorOfProduct={productDetails.creatorOfProduct}
               />
             </Grid>
           </Grid>
