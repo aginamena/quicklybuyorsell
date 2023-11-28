@@ -17,7 +17,8 @@ export default function Root() {
         }}
       >
         <Typography variant="h6">
-          Discover and buy with ease from local sellers in your neighbourhood.
+          Discover quickly and buy with ease from local sellers in your
+          neighbourhood.
         </Typography>
       </Paper>
       <TodaysProducts />
