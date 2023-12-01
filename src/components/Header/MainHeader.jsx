@@ -73,7 +73,7 @@ export default function MainHeader({ user, setUser }) {
   const [number, setNumber] = useState("");
   const [loading, setLoading] = useState(false);
 
-  const { setShowDialogCmp, setShowDrawerCmp } = useContext(AppContext);
+  const { setShowDrawerCmp } = useContext(AppContext);
 
   async function signIn() {
     try {
@@ -146,17 +146,17 @@ export default function MainHeader({ user, setUser }) {
                   QBOS
                 </Typography>
               </Link>
-
-              <Typography
-                onClick={() => setShowDialogCmp(true)}
-                sx={{
-                  textDecoration: "underline",
-                  cursor: "pointer",
-                  display: { xs: "none", sm: "block" },
-                }}
-              >
-                Sell your products
-              </Typography>
+              <Link to="sell-your-products">
+                <Typography
+                  sx={{
+                    color: "white",
+                    textDecoration: "underline",
+                    display: { xs: "none", sm: "block" },
+                  }}
+                >
+                  Sell your products
+                </Typography>
+              </Link>
             </Box>
           </Box>
 

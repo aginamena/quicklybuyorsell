@@ -19,6 +19,7 @@ import DrawerCmp from "components/DrawerCmp";
 import ProtectedRoute from "components/ProtectedRoute";
 import { isUserAdmin } from "pages/ProductDetails/util";
 import { getUser } from "pages/util";
+import SellYourProducts from "pages/SellYourProducts";
 
 function App() {
   const [showSnackbarCmp, setShowSnackbarCmp] = useState({
@@ -26,15 +27,12 @@ function App() {
     message: "",
   });
   const [showBackdropCmp, setShowBackdropCmp] = useState(false);
-  const [showDialogCmp, setShowDialogCmp] = useState(false);
   const [showDrawerCmp, setShowDrawerCmp] = useState(false);
   const state = {
     showSnackbarCmp,
     setShowSnackbarCmp,
     showBackdropCmp,
     setShowBackdropCmp,
-    showDialogCmp,
-    setShowDialogCmp,
     showDrawerCmp,
     setShowDrawerCmp,
   };
@@ -78,9 +76,13 @@ function App() {
 
             <Route exact path="terms-of-use" element={<TermsOfUse />} />
             <Route exact path="about-us" element={<AboutUs />} />
+            <Route
+              exact
+              path="sell-your-products"
+              element={<SellYourProducts />}
+            />
           </Routes>
           <SnackbarCmp />
-          <DialogCmp />
           <DrawerCmp />
         </HashRouter>
       </ThemeProvider>
