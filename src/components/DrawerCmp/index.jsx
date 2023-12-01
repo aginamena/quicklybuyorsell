@@ -6,8 +6,7 @@ import { Link } from "react-router-dom";
 import { getAllCategoryNames } from "structure/categories";
 
 export default function DrawerCmp() {
-  const { showDrawerCmp, setShowDrawerCmp, setShowDialogCmp } =
-    useContext(AppContext);
+  const { showDrawerCmp, setShowDrawerCmp } = useContext(AppContext);
 
   return (
     <Drawer
@@ -40,16 +39,17 @@ export default function DrawerCmp() {
           </div>
         ))}
       </Box>
-      <Typography
-        onClick={() => setShowDialogCmp(true)}
-        sx={{
-          cursor: "pointer",
-          textDecoration: "underline",
-          marginTop: "40px",
-        }}
-      >
-        Sell your products
-      </Typography>
+      <Link to="sell-your-products">
+        <Typography
+          sx={{
+            marginTop: "40px",
+            color: "white",
+            textDecoration: "underline",
+          }}
+        >
+          Sell your products
+        </Typography>
+      </Link>
     </Drawer>
   );
 }
