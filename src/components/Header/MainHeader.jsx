@@ -86,11 +86,8 @@ export default function MainHeader({ user, setUser }) {
         displayName,
         photoURL,
       });
-      if (!phoneNumber) {
-        setOpenDialog(true);
-      } else {
-        createProfile(phoneNumber);
-      }
+      //taking the users phone number
+      setOpenDialog(true);
     } catch (error) {
       alert("An error ocurred");
     }

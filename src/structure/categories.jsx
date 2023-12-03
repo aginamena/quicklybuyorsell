@@ -1,18 +1,14 @@
 const categories = [
   {
-    Name: "Footwears",
+    Name: "Shoes",
     Type: ["Male", "Female"],
   },
   {
-    Name: "Bags",
+    Name: "Sandals",
     Type: ["Male", "Female"],
   },
   {
-    Name: "Shirts",
-    Type: ["Male", "Female"],
-  },
-  {
-    Name: "Skirts-and-Trousers",
+    Name: "Slides",
     Type: ["Male", "Female"],
   },
 ];
