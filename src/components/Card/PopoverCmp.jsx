@@ -91,7 +91,15 @@ export default function PopoverCmp({
         </>
       )) ||
         (status === "On review" && (
-          <Typography sx={{ p: 2 }}>Product on review</Typography>
+          <>
+            <Typography sx={{ p: 2 }}>Product on review</Typography>
+            <Link
+              style={{ textDecoration: "none", color: "white" }}
+              onClick={editProduct}
+            >
+              <Typography sx={{ p: 2 }}>Edit product</Typography>
+            </Link>
+          </>
         )) ||
         (status === "Published" && (
           <Link
