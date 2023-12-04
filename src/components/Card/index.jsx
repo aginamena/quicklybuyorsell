@@ -6,6 +6,7 @@ import CardMedia from "@mui/material/CardMedia";
 import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
 import currencyFormatter from "currency-formatter";
+import Divider from "@mui/material/Divider";
 import PropTypes from "prop-types";
 import { useState } from "react";
 import { Link } from "react-router-dom";
@@ -71,6 +72,21 @@ export default function Displaycard({
               ? formattedAmount.substring(0, maximumLengthOfAmount) + "..."
               : formattedAmount}
           </Typography>
+
+          {isPrivate && (
+            <>
+              <Divider
+                sx={{
+                  borderBottomWidth: "5px",
+                  marginTop: "20px",
+                  marginBottom: "10px",
+                }}
+              />
+              <Typography color="text.secondary" style={{ fontSize: "13px" }}>
+                Status : {productStatus}
+              </Typography>
+            </>
+          )}
         </CardContent>
       </Card>
     </Link>
