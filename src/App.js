@@ -20,6 +20,7 @@ import ProtectedRoute from "components/ProtectedRoute";
 import { isUserAdmin } from "pages/ProductDetails/util";
 import { getUser } from "pages/util";
 import SellYourProducts from "pages/SellYourProducts";
+import SellerProducts from "pages/SellerProducts";
 
 function App() {
   const [showSnackbarCmp, setShowSnackbarCmp] = useState({
@@ -73,7 +74,11 @@ function App() {
               path="published-products/:selectedCategory"
               element={<PublishedProducts />}
             />
-
+            <Route
+              exact
+              path="seller-products/:sellerEmail"
+              element={<SellerProducts />}
+            />
             <Route exact path="terms-of-use" element={<TermsOfUse />} />
             <Route exact path="about-us" element={<AboutUs />} />
             <Route
