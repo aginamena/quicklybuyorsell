@@ -70,57 +70,45 @@ export default function PopoverCmp({
         style={{ textDecoration: "none", color: "white" }}
         to={`../product-details/${productId}`}
       >
-        <Typography sx={{ p: 2 }}>View created product</Typography>
+        <Typography sx={{ p: 2, cursor: "pointer" }}>
+          View created product
+        </Typography>
       </Link>
       {(status === "Not published" && (
         <>
-          <Link
-            style={{ textDecoration: "none", color: "white" }}
+          <Typography
             onClick={editProduct}
+            sx={{
+              p: 2,
+              cursor: "pointer",
+            }}
           >
-            <Typography sx={{ p: 2 }}>Edit product</Typography>
-          </Link>
-          <Link
-            style={{ textDecoration: "none", color: "white" }}
-            onClick={addToReview}
-          >
-            <Typography sx={{ p: 2 }}>
-              Publish product to the marketplace
-            </Typography>
-          </Link>
+            Edit product
+          </Typography>
+
+          <Typography onClick={addToReview} sx={{ p: 2, cursor: "pointer" }}>
+            Publish product to the marketplace
+          </Typography>
+          {/* <Typography onClick={deleteProduct} sx={{ p: 2, cursor: "pointer" }}>
+            Delete product
+          </Typography> */}
         </>
       )) ||
         (status === "On review" && (
           <>
-            <Typography sx={{ p: 2 }}>Product on review</Typography>
-            <Link
-              style={{ textDecoration: "none", color: "white" }}
-              onClick={editProduct}
-            >
-              <Typography sx={{ p: 2 }}>Edit product</Typography>
-            </Link>
+            <Typography onClick={editProduct} sx={{ p: 2, cursor: "pointer" }}>
+              Edit product
+            </Typography>
+            {/* <Typography sx={{ p: 2, cursor: "pointer" }}>
+              Remove product from review
+            </Typography> */}
           </>
         )) ||
         (status === "Published" && (
-          <Link
-            style={{ textDecoration: "none", color: "white" }}
-            onClick={removeFromMarketplace}
-          >
-            <Typography sx={{ p: 2 }}>
-              Remove product from marketplace
-            </Typography>
-          </Link>
+          <Typography sx={{ p: 2, cursor: "pointer" }}>
+            Remove product from marketplace
+          </Typography>
         ))}
-      {/* <Link style={{ textDecoration: "none", color: "white" }}>
-        <Typography sx={{ p: 2 }}>Boost product</Typography>
-      </Link>
-      <Link style={{ textDecoration: "none", color: "white" }}>
-        <Typography sx={{ p: 2 }}>Product analytics</Typography>
-      </Link> */}
-      {/* {status === "Not published" && (
-        <Link style={{ textDecoration: "none", color: "white" }}>
-          <Typography sx={{ p: 2 }}>Delete product</Typography>
-        </Link> */}
       <BackdropCmp />
     </Popover>
   );
