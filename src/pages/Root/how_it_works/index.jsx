@@ -4,7 +4,8 @@ import HowItWorksCard from "./HowItWorksCard";
 export default function HowItWorks() {
   const cards = [
     {
-      title: "Explore a wide selection of verified products.",
+      title:
+        "Explore a wide selection of verified products that meet your needs.",
       imagePath: "root/how_it_works/view_wide_selection_of_products.jpg",
     },
     {

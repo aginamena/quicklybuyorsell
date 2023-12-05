@@ -86,6 +86,9 @@ export default function ProductDetails() {
             </Grid>
           </Grid>
           <Specification
+            isUserAuthourized={isUserAuthourized}
+            productId={productDetails.productId}
+            productStatus={productDetails.productStatus}
             type={productDetails.type}
             description={productDetails.description}
           />

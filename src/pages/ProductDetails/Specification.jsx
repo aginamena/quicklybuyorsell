@@ -1,15 +1,31 @@
 import { Box, Paper, Typography } from "@mui/material";
 
-export default function Specification({ type, description }) {
+export default function Specification({
+  type,
+  description,
+  productId,
+  isUserAuthourized,
+  productStatus,
+}) {
   return (
     <Paper style={{ padding: "30px", marginTop: "40px" }}>
       <Box style={{ marginBottom: "40px" }}>
-        {type && (
+        <Typography variant="h6" style={{ marginBottom: "10px" }}>
+          Type
+        </Typography>
+        <Typography style={{ color: "#dedede" }}>{type}</Typography>
+        {isUserAuthourized && (
           <>
             <Typography variant="h6" style={{ marginBottom: "10px" }}>
-              Type
+              ProductId
             </Typography>
-            <Typography style={{ color: "#dedede" }}>{type}</Typography>
+            <Typography style={{ color: "#dedede" }}>{productId}</Typography>
+            <Typography variant="h6" style={{ marginBottom: "10px" }}>
+              Product Status
+            </Typography>
+            <Typography style={{ color: "#dedede" }}>
+              {productStatus}
+            </Typography>
           </>
         )}
       </Box>

@@ -105,7 +105,10 @@ export default function PopoverCmp({
           </>
         )) ||
         (status === "Published" && (
-          <Typography sx={{ p: 2, cursor: "pointer" }}>
+          <Typography
+            onClick={removeFromMarketplace}
+            sx={{ p: 2, cursor: "pointer" }}
+          >
             Remove product from marketplace
           </Typography>
         ))}
