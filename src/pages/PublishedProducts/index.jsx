@@ -11,11 +11,10 @@ export default function PublishedProducts() {
     data: products,
     isLoading,
     isError,
-  } = useQuery(
-    ["PublishedProducts", selectedCategory],
-    () => getAllPublishedProducts(selectedCategory),
-    { enabled: !!selectedCategory } // Ensures the query is only executed when selectedCategory is available
-  );
+  } = useQuery({
+    queryKey: ["PublishedProducts", selectedCategory],
+    queryFn: () => getAllPublishedProducts(selectedCategory),
+  });
 
   if (isError) {
     alert("An error occured");

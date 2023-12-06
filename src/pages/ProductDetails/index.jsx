@@ -35,7 +35,10 @@ export default function ProductDetails() {
     data: productDetails,
     isLoading,
     isError,
-  } = useQuery(["ProductDetails", productId], getProductDetails);
+  } = useQuery({
+    queryKey: ["ProductDetails", productId],
+    queryFn: getProductDetails,
+  });
 
   const isUserAuthourized = isUserAdmin();
 

@@ -15,7 +15,10 @@ export default function ProductsForReview() {
     data: products,
     isLoading,
     isError,
-  } = useQuery("ProductForReview", getProductsForReview);
+  } = useQuery({
+    queryKey: ["ProductForReview"],
+    queryFn: getProductsForReview,
+  });
 
   if (isError) {
     alert("An error occured");

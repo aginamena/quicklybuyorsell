@@ -17,7 +17,10 @@ export default function SellerProducts() {
     data: products,
     isLoading,
     isError,
-  } = useQuery(["SellerProducts", sellerEmail], getAllProducts);
+  } = useQuery({
+    queryKey: ["SellerProducts", sellerEmail],
+    queryFn: getAllProducts,
+  });
 
   if (isError) {
     alert("An error occured");

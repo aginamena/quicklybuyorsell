@@ -18,7 +18,10 @@ export default function TodaysProducts() {
     data: products,
     isLoading,
     isError,
-  } = useQuery("TodaysProducts", getLast8PublishedProducts);
+  } = useQuery({
+    queryKey: ["TodaysProducts"],
+    queryFn: getLast8PublishedProducts,
+  });
 
   if (isError) {
     alert("An error occured");

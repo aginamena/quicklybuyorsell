@@ -14,7 +14,7 @@ export default function ViewProducts() {
     data: products,
     isLoading,
     isError,
-  } = useQuery("ViewProducts", getAllProducts);
+  } = useQuery({ queryKey: ["ViewProducts"], queryFn: getAllProducts });
 
   if (isError) {
     alert("An error occured");
