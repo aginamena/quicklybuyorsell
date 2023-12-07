@@ -39,12 +39,15 @@ export default function CreateProducts() {
     theme.breakpoints.down("md")
   );
 
-  function addFile(newFile) {
+  function addFiles(newFiles) {
     const MAXIMUM_NUMBER_OF_FILES = 10;
-    if (specification.files.length < MAXIMUM_NUMBER_OF_FILES) {
+    if (
+      specification.files.length + newFiles.length <=
+      MAXIMUM_NUMBER_OF_FILES
+    ) {
       setSpecification({
         ...specification,
-        files: [...specification.files, newFile],
+        files: [...specification.files, ...newFiles],
       });
     } else {
       alert("Maximum number of files reached");
@@ -162,9 +165,10 @@ export default function CreateProducts() {
           <Box>
             <input
               type="file"
+              multiple
               data-testid="image"
               accept="image/jpeg, image/png, video/mp4"
-              onChange={(e) => addFile(e.target.files[0])}
+              onChange={(e) => addFiles(e.target.files)}
             />
 
             <Typography>

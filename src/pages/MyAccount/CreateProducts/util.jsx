@@ -6,10 +6,14 @@ import {
   storage,
   uploadBytes,
 } from "config/firebase";
-import { storeDataInFirestore, updateDataInFirestore } from "pages/util";
+import {
+  storeDataInFirestore,
+  updateDataInFirestore,
+  getUser,
+} from "pages/util";
 
 export async function createProduct(specification) {
-  const email = auth.currentUser.email;
+  const { email } = getUser();
   const productId = specification.productId || getUniqueId();
   const listOfFilePaths = await uploadFiles(specification, email, productId);
   const productsCollection = `products/${productId}`;
