@@ -44,7 +44,6 @@ export default function Displaycard({
                 <PopoverCmp
                   productId={productId}
                   popup={popup}
-                  productStatus={productStatus}
                   setPopup={() => setPopup(null)}
                 />
               </>

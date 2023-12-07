@@ -1,13 +1,15 @@
 import { Container, Toolbar, Typography } from "@mui/material";
 import DisplayProducts from "components/DisplayProducts";
-import { getAllProductsFromFirestore } from "pages/util";
+import { collection, firestore, query, where } from "config/firebase";
+import { executeQueryOnProductsCollection } from "pages/util";
 import { useQuery } from "react-query";
-
 export default function ProductsForReview() {
   async function getProductsForReview() {
-    const productsForReview = await getAllProductsFromFirestore(
-      "productsForReview"
+    const q = query(
+      collection(firestore, "products"),
+      where("productStatus", "==", "On review")
     );
+    const productsForReview = await executeQueryOnProductsCollection(q);
     return productsForReview;
   }
 

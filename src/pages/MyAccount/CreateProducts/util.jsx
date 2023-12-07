@@ -1,13 +1,10 @@
 import {
   auth,
-  doc,
-  firestore,
+  deleteObject,
   getDownloadURL,
   ref,
-  setDoc,
   storage,
   uploadBytes,
-  deleteObject,
 } from "config/firebase";
 import { storeDataInFirestore, updateDataInFirestore } from "pages/util";
 
@@ -17,9 +14,12 @@ export async function createProduct(specification) {
   const listOfFilePaths = await uploadFiles(specification, email, productId);
   const productsCollection = `products/${productId}`;
 
+  //if the user is editing thier product, we simply update the existing fields otherwise, create a new
+  //product
   if (specification.productId) {
     specification = {
       ...specification,
+      productStatus: "On review",
       files: listOfFilePaths,
     };
     delete specification.originalFiles;
@@ -30,14 +30,10 @@ export async function createProduct(specification) {
       files: listOfFilePaths,
       productId,
       createdProductTimestamp: new Date().getTime(),
-      productStatus: "Not published",
+      productStatus: "On review",
       creatorOfProduct: email,
     };
-    const myAccountCollection = `myAccount/${email}/products/${productId}`;
-    Promise.all([
-      storeDataInFirestore(myAccountCollection, { productId }),
-      storeDataInFirestore(productsCollection, specification),
-    ]);
+    await storeDataInFirestore(productsCollection, specification);
   }
 }
 

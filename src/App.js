@@ -17,7 +17,7 @@ import AboutUs from "pages/AboutUs";
 import DialogCmp from "components/DialogCmp";
 import DrawerCmp from "components/DrawerCmp";
 import ProtectedRoute from "components/ProtectedRoute";
-import { isUserAdmin } from "pages/ProductDetails/util";
+import { isUserAdmin } from "pages/util";
 import { getUser } from "pages/util";
 import SellYourProducts from "pages/SellYourProducts";
 import SellerProducts from "pages/SellerProducts";

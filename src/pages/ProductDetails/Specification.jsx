@@ -4,7 +4,7 @@ export default function Specification({
   type,
   description,
   productId,
-  isUserAuthourized,
+  isAdmin,
   productStatus,
 }) {
   return (
@@ -14,7 +14,7 @@ export default function Specification({
           Type
         </Typography>
         <Typography style={{ color: "#dedede" }}>{type}</Typography>
-        {isUserAuthourized && (
+        {isAdmin && (
           <>
             <Typography variant="h6" style={{ marginBottom: "10px" }}>
               ProductId

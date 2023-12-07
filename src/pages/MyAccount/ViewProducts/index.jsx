@@ -1,14 +1,19 @@
 import { Typography } from "@mui/material";
 import DisplayProducts from "components/DisplayProducts";
-import { getAllProductsFromFirestore, getUser } from "pages/util";
+import { collection, firestore, orderBy, query, where } from "config/firebase";
+import { executeQueryOnProductsCollection, getUser } from "pages/util";
 import { useQuery } from "react-query";
 
 export default function ViewProducts() {
   async function getAllProducts() {
     const { email } = getUser();
-    const path = `myAccount/${email}/products`;
-    const allMyProducts = await getAllProductsFromFirestore(path);
-    return allMyProducts.reverse();
+    const q = query(
+      collection(firestore, "products"),
+      where("creatorOfProduct", "==", email),
+      orderBy("productId", "desc")
+    );
+    const allMyProducts = await executeQueryOnProductsCollection(q);
+    return allMyProducts;
   }
   const {
     data: products,
