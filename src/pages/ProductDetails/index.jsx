@@ -16,7 +16,8 @@ import { useQuery } from "react-query";
 import Contact from "./Contact";
 import ImageGalleryCmp from "./ImageGalleryCmp";
 import Specification from "./Specification";
-import { acceptProduct, isUserAdmin, rejectProduct } from "./util";
+import { acceptProduct, rejectProduct } from "./util";
+import { isUserAdmin } from "pages/util";
 
 export default function ProductDetails() {
   const { productId } = useParams();
@@ -40,7 +41,7 @@ export default function ProductDetails() {
     queryFn: getProductDetails,
   });
 
-  const isUserAuthourized = isUserAdmin();
+  const isAdmin = isUserAdmin();
 
   async function handleAccptProduct() {
     setShowBackdropCmp(true);
@@ -89,13 +90,13 @@ export default function ProductDetails() {
             </Grid>
           </Grid>
           <Specification
-            isUserAuthourized={isUserAuthourized}
+            isAdmin={isAdmin}
             productId={productDetails.productId}
             productStatus={productDetails.productStatus}
             type={productDetails.type}
             description={productDetails.description}
           />
-          {isUserAuthourized && (
+          {isAdmin && (
             <Box style={{ marginTop: "30px" }}>
               <Button color="success" onClick={handleAccptProduct}>
                 Accept product

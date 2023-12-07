@@ -22,15 +22,19 @@ export async function getFromFirestore(path) {
     throw new Error("No Document found");
   }
 }
-export async function getAllProductsFromFirestore(path) {
-  const querySnapshot = await getDocs(collection(firestore, path));
-  const promises = [];
+
+export function isUserAdmin() {
+  const currentUser = getUser();
+  return currentUser && currentUser.email === process.env.REACT_APP_ADMIN;
+}
+
+export async function executeQueryOnProductsCollection(query) {
+  const querySnapshot = await getDocs(query);
+  const result = [];
   querySnapshot.forEach((doc) => {
-    const path = `products/${doc.id}`;
-    promises.push(getFromFirestore(path));
+    result.push(doc.data());
   });
-  const allProducts = Promise.all(promises);
-  return allProducts;
+  return result;
 }
 
 export function getUser() {
