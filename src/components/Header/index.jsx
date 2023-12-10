@@ -3,6 +3,8 @@ import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import MainHeader from "./MainHeader";
 import SubHeader from "./SubHeader";
+import SearchBarCmp from "components/SearcBarCmp";
+import { Box } from "@mui/material";
 
 export default function Header() {
   const location = useLocation();
@@ -23,6 +25,9 @@ export default function Header() {
       <MainHeader user={user} setUser={setUser} />
       <div style={{ marginTop: "10px" }}></div>
       {location.pathname === "/" && <SubHeader />}
+      <Box sx={{ display: { xs: "block", sm: "none" } }}>
+        <SearchBarCmp />
+      </Box>
     </>
   );
 }
