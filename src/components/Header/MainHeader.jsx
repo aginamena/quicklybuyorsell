@@ -1,77 +1,33 @@
-import AccountCircle from "@mui/icons-material/AccountCircle";
-import MailIcon from "@mui/icons-material/Mail";
 import MenuIcon from "@mui/icons-material/Menu";
-import MoreIcon from "@mui/icons-material/MoreVert";
-import NotificationsIcon from "@mui/icons-material/Notifications";
-import SearchIcon from "@mui/icons-material/Search";
-import { Button } from "@mui/material";
-import AppBar from "@mui/material/AppBar";
-import Badge from "@mui/material/Badge";
-import Box from "@mui/material/Box";
-import IconButton from "@mui/material/IconButton";
-import InputBase from "@mui/material/InputBase";
-import Menu from "@mui/material/Menu";
-import MenuItem from "@mui/material/MenuItem";
-import Toolbar from "@mui/material/Toolbar";
-import Typography from "@mui/material/Typography";
-import { alpha, styled } from "@mui/material/styles";
-import PropTypes from "prop-types";
-import { useState, useEffect, useContext } from "react";
-import ProfileIcon from "./ProfileIcon";
-import DialogCmp from "./DialogCmp";
-import { signInWithGoogle, storeDataInFirestore } from "pages/util";
-import { Link } from "react-router-dom";
+import {
+  AppBar,
+  Button,
+  IconButton,
+  List,
+  ListItem,
+  ListItemButton,
+  ListItemText,
+  Paper,
+  Toolbar,
+  Typography,
+  Box,
+} from "@mui/material";
+
 import { AppContext } from "context/appContext";
-
-const Search = styled("div")(({ theme }) => ({
-  position: "relative",
-  borderRadius: theme.shape.borderRadius,
-  backgroundColor: alpha(theme.palette.common.white, 0.15),
-  "&:hover": {
-    backgroundColor: alpha(theme.palette.common.white, 0.25),
-  },
-  marginRight: theme.spacing(2),
-  marginLeft: 0,
-  //   width: "100%",
-}));
-
-const SearchIconWrapper = styled("div")(({ theme }) => ({
-  padding: theme.spacing(0, 2),
-  height: "100%",
-  position: "absolute",
-  pointerEvents: "none",
-  display: "flex",
-  alignItems: "center",
-  justifyContent: "center",
-}));
-
-const StyledInputBase = styled(InputBase)(({ theme }) => ({
-  color: "inherit",
-  "& .MuiInputBase-input": {
-    padding: theme.spacing(1, 1, 1, 0),
-    // vertical padding + font size from searchIcon
-    paddingLeft: `calc(1em + ${theme.spacing(4)})`,
-    transition: theme.transitions.create("width"),
-
-    // [theme.breakpoints.up("md")]: {
-    //   width: "20ch",
-    // },
-    [theme.breakpoints.up("sm")]: {
-      marginLeft: theme.spacing(3),
-      width: "auto",
-    },
-    [theme.breakpoints.up("md")]: {
-      width: "600px",
-    },
-  },
-}));
+import { signInWithGoogle, storeDataInFirestore } from "pages/util";
+import PropTypes from "prop-types";
+import { useContext, useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import DialogCmp from "./DialogCmp";
+import ProfileIcon from "./ProfileIcon";
+import SearchBarCmp from "components/SearcBarCmp";
 
 export default function MainHeader({ user, setUser }) {
-  const [anchorEl, setAnchorEl] = useState(null);
-  const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = useState(null);
   const [openDialog, setOpenDialog] = useState(false);
   const [number, setNumber] = useState("");
   const [loading, setLoading] = useState(false);
+
+  const navigate = useNavigate();
 
   const { setShowDrawerCmp } = useContext(AppContext);
 
@@ -156,7 +112,9 @@ export default function MainHeader({ user, setUser }) {
               </Link>
             </Box>
           </Box>
-
+          <Box sx={{ display: { xs: "none", sm: "block" } }}>
+            <SearchBarCmp />
+          </Box>
           <Box>
             {Object.keys(user).length !== 0 ? (
               <div data-testid="profileMenu">
