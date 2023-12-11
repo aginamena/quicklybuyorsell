@@ -15,10 +15,7 @@ import BackdropCmp from "components/BackdropCmp";
 import SelectCmp from "components/SelectCmp";
 import { AppContext, MyAccountContext } from "context/appContext";
 import { useContext, useEffect, useState } from "react";
-import {
-  getAllCategoryNames,
-  getTypeOfCategoryName,
-} from "structure/categories";
+import { getAllCategoryNames } from "structure/categories";
 import { PostImage } from "./style";
 import { createProduct } from "./util";
 import { getFromFirestore } from "pages/util";
@@ -75,15 +72,6 @@ export default function CreateProducts() {
       alert(`Title should be less than ${maximumLengthOfTitle} characters`);
       return;
     }
-    if (
-      specification.type &&
-      !getTypeOfCategoryName(specification.category).includes(
-        specification.type
-      )
-    ) {
-      alert("Select the right type of category");
-      return;
-    }
     try {
       setShowBackdropCmp(true);
       //if we're editing the product, we need to keep the current product id
@@ -131,7 +119,6 @@ export default function CreateProducts() {
       <Typography style={{ marginBottom: "20px" }}>Product category</Typography>
       <SelectCmp
         name="Select category"
-        previousSelectedValue={specification.category}
         menuItems={getAllCategoryNames()}
         handleSelect={(value) =>
           setSpecification({
@@ -140,23 +127,31 @@ export default function CreateProducts() {
           })
         }
       />
-      {specification.category &&
-        getTypeOfCategoryName(specification.category).length > 0 && (
-          <div style={{ marginTop: "20px" }}>
-            <SelectCmp
-              name="Type"
-              previousSelectedValue={specification.type}
-              menuItems={getTypeOfCategoryName(specification.category)}
-              handleSelect={(value) =>
-                setSpecification({
-                  ...specification,
-                  type: value,
-                })
-              }
-            />
-          </div>
-        )}
-
+      <Box style={{ marginTop: "20px" }}>
+        <SelectCmp
+          name="Type"
+          previousSelectedValue={specification.type}
+          menuItems={["Male", "Female", "Unisex"]}
+          handleSelect={(value) =>
+            setSpecification({
+              ...specification,
+              type: value,
+            })
+          }
+        />
+      </Box>
+      <Box style={{ marginTop: "20px" }}>
+        <SelectCmp
+          name="Condition"
+          menuItems={["New", "Used"]}
+          handleSelect={(value) =>
+            setSpecification({
+              ...specification,
+              condition: value,
+            })
+          }
+        />
+      </Box>
       <Box style={{ marginTop: "30px", marginBottom: "30px" }}>
         <Typography style={{ marginBottom: "10px" }}>
           Product image(s)
@@ -267,7 +262,7 @@ export default function CreateProducts() {
         multiline
         value={specification.description}
         rows={5}
-        placeholder="What other details do you want buyers to know about?"
+        placeholder="Provide details like&#10;Size = ...&#10;Colour = ...&#10;Brand = ...&#10;What other details do you want buyers to know about?"
         onChange={(e) =>
           setSpecification({
             ...specification,

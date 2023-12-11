@@ -10,21 +10,40 @@ export default function Specification({
   return (
     <Paper style={{ padding: "30px", marginTop: "40px" }}>
       <Box style={{ marginBottom: "40px" }}>
-        <Typography variant="h6" style={{ marginBottom: "10px" }}>
-          Type
+        <Typography
+          style={{
+            marginBottom: "10px",
+            display: "flex",
+            alignItems: "center",
+          }}
+        >
+          <b>Type </b>
+          <span style={{ margin: "0 5px" }}>:</span>
+          <span style={{ color: "#dedede" }}>{type}</span>
         </Typography>
-        <Typography style={{ color: "#dedede" }}>{type}</Typography>
         {isAdmin && (
           <>
-            <Typography variant="h6" style={{ marginBottom: "10px" }}>
-              ProductId
+            <Typography
+              style={{
+                marginBottom: "10px",
+                display: "flex",
+                alignItems: "center",
+              }}
+            >
+              <b>ProductId </b>
+              <span style={{ margin: "0 5px" }}>:</span>
+              <span style={{ color: "#dedede" }}>{productId}</span>
             </Typography>
-            <Typography style={{ color: "#dedede" }}>{productId}</Typography>
-            <Typography variant="h6" style={{ marginBottom: "10px" }}>
-              Product Status
-            </Typography>
-            <Typography style={{ color: "#dedede" }}>
-              {productStatus}
+            <Typography
+              style={{
+                marginBottom: "10px",
+                display: "flex",
+                alignItems: "center",
+              }}
+            >
+              <b>Product status </b>
+              <span style={{ margin: "0 5px" }}>:</span>
+              <span style={{ color: "#dedede" }}>{productStatus}</span>
             </Typography>
           </>
         )}

@@ -1,22 +1,17 @@
 const categories = [
   {
-    Name: "Shoes",
-    Type: ["Male", "Female"],
+    name: "Sneakers",
   },
   {
-    Name: "Sandals",
-    Type: ["Male", "Female"],
+    name: "Flat shoes",
   },
   {
-    Name: "Slides",
-    Type: ["Male", "Female"],
+    name: "Sandals",
+  },
+  {
+    name: "Slides",
   },
 ];
 export function getAllCategoryNames() {
-  return categories.map((category) => category.Name);
-}
-export function getTypeOfCategoryName(categoryName) {
-  for (var i = 0; i < categories.length; i++) {
-    if (categoryName == categories[i].Name) return categories[i].Type;
-  }
+  return categories.map((category) => category.name);
 }
