@@ -1,4 +1,4 @@
-import { Container, Toolbar, Typography, Box } from "@mui/material";
+import { Box, Container, Toolbar, Typography } from "@mui/material";
 
 export default function AboutUs() {
   return (

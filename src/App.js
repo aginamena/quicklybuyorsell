@@ -1,26 +1,23 @@
 import { CssBaseline } from "@mui/material";
 import { ThemeProvider } from "@mui/material/styles";
-
+import DrawerCmp from "components/DrawerCmp";
 import Header from "components/Header";
+import ProtectedRoute from "components/ProtectedRoute";
 import SnackbarCmp from "components/SnackbarCmp";
 import { AppContext } from "context/appContext";
+import AboutUs from "pages/AboutUs";
 import MyAccount from "pages/MyAccount";
 import ProductDetails from "pages/ProductDetails";
 import ProductsForReview from "pages/ProductsForReview";
-import { useState } from "react";
-import { BrowserRouter, Route, Routes, HashRouter } from "react-router-dom";
-import Root from "./pages/Root";
-import { darkTheme } from "./theme";
 import PublishedProducts from "pages/PublishedProducts";
-import TermsOfUse from "pages/TermsOfUse";
-import AboutUs from "pages/AboutUs";
-import DialogCmp from "components/DialogCmp";
-import DrawerCmp from "components/DrawerCmp";
-import ProtectedRoute from "components/ProtectedRoute";
-import { isUserAdmin } from "pages/util";
-import { getUser } from "pages/util";
 import SellYourProducts from "pages/SellYourProducts";
 import SellerProducts from "pages/SellerProducts";
+import TermsOfUse from "pages/TermsOfUse";
+import { getUser, isUserAdmin } from "pages/util";
+import { useState } from "react";
+import { HashRouter, Route, Routes } from "react-router-dom";
+import Root from "./pages/Root";
+import { darkTheme } from "./theme";
 
 function App() {
   const [showSnackbarCmp, setShowSnackbarCmp] = useState({

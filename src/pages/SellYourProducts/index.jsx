@@ -1,17 +1,16 @@
-import { useTheme } from "@mui/material/styles";
 import {
+  Box,
   Container,
-  Typography,
+  Divider,
   Grid,
   Toolbar,
-  Box,
-  Button,
-  Divider,
+  Typography,
   useMediaQuery,
 } from "@mui/material";
+import { useTheme } from "@mui/material/styles";
 import Footer from "components/Footer";
 import ReviewsAndRatingsCard from "components/ReviewsAndRatingsCard";
-import ValuePropositionCard from "components/ValuePropostionCard";
+import ValuePropositionCard from "./ValuePropositionCard";
 
 export default function SellYourProducts() {
   const cards = [
@@ -37,10 +36,10 @@ export default function SellYourProducts() {
 
   const reviews = [
     {
-      src: "sellYourProducts/daniel_lamuel.jpg",
-      name: "Daniel Lamuel",
+      src: "sellYourProducts/catharina_mabel.jpg",
+      name: "Catharina Mabel",
       description:
-        "This platform is really amazing and easily accessible. One of best things is that posting of products is completely free.",
+        "As a busy craftwoman, i find it easy listing my products on QBOS. The site is EASY to use. With few steps my products gets ready. I connect with my buyers swiftly.",
     },
     {
       src: "sellYourProducts/sarah_jude.jpg",

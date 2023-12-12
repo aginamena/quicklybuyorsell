@@ -1,33 +1,26 @@
 import MenuIcon from "@mui/icons-material/Menu";
 import {
   AppBar,
+  Box,
   Button,
   IconButton,
-  List,
-  ListItem,
-  ListItemButton,
-  ListItemText,
-  Paper,
   Toolbar,
   Typography,
-  Box,
 } from "@mui/material";
 
+import SearchBarCmp from "components/SearcBarCmp";
 import { AppContext } from "context/appContext";
 import { signInWithGoogle, storeDataInFirestore } from "pages/util";
 import PropTypes from "prop-types";
 import { useContext, useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import DialogCmp from "./DialogCmp";
 import ProfileIcon from "./ProfileIcon";
-import SearchBarCmp from "components/SearcBarCmp";
 
 export default function MainHeader({ user, setUser }) {
   const [openDialog, setOpenDialog] = useState(false);
   const [number, setNumber] = useState("");
   const [loading, setLoading] = useState(false);
-
-  const navigate = useNavigate();
 
   const { setShowDrawerCmp } = useContext(AppContext);
 

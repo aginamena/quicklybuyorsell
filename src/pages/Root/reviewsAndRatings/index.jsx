@@ -1,4 +1,4 @@
-import { Box, Container, Grid, Typography } from "@mui/material";
+import { Container, Grid, Typography } from "@mui/material";
 import ReviewsAndRatingsCard from "components/ReviewsAndRatingsCard";
 
 export default function ReveiwsAndRatings() {

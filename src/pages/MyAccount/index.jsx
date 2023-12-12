@@ -2,12 +2,12 @@ import { Container, Toolbar, useMediaQuery } from "@mui/material";
 import Tabs from "@mui/material/Tabs";
 import { useTheme } from "@mui/material/styles";
 
-import TabPanel from "components/TabPanel";
-import React, { useState } from "react";
+import { MyAccountContext } from "context/appContext";
+import { useState } from "react";
 import CreateProducts from "./CreateProducts";
+import TabPanel from "./TabPanel";
 import ViewProducts from "./ViewProducts";
 import { TabCmp } from "./style";
-import { MyAccountContext } from "context/appContext";
 
 export default function MyAccount() {
   const theme = useTheme();

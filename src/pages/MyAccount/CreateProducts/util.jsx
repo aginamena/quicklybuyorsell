@@ -1,5 +1,4 @@
 import {
-  auth,
   deleteObject,
   getDownloadURL,
   ref,
@@ -7,9 +6,9 @@ import {
   uploadBytes,
 } from "config/firebase";
 import {
+  getUser,
   storeDataInFirestore,
   updateDataInFirestore,
-  getUser,
 } from "pages/util";
 
 export async function createProduct(specification) {

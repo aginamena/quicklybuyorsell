@@ -1,8 +1,8 @@
 import { Divider } from "@mui/material";
 import Footer from "components/Footer";
 import TodaysProducts from "./TodaysProducts";
-import HowItWorks from "./how_it_works";
-import ReviewsAndRatings from "./reviews_and_ratings";
+import HowItWorks from "./howItWorks";
+import ReviewsAndRatings from "./reviewsAndRatings";
 
 export default function Root() {
   return (
