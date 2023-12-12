@@ -11,13 +11,12 @@ import { useParams } from "react-router-dom";
 
 import BackdropCmp from "components/BackdropCmp";
 import { AppContext } from "context/appContext";
-import { getFromFirestore } from "pages/util";
+import { getFromFirestore, isUserAdmin } from "pages/util";
 import { useQuery } from "react-query";
 import Contact from "./Contact";
 import ImageGalleryCmp from "./ImageGalleryCmp";
 import Specification from "./Specification";
 import { acceptProduct, rejectProduct } from "./util";
-import { isUserAdmin } from "pages/util";
 
 export default function ProductDetails() {
   const { productId } = useParams();

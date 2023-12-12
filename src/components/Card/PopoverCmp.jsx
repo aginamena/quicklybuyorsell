@@ -3,7 +3,7 @@ import Typography from "@mui/material/Typography";
 import BackdropCmp from "components/BackdropCmp";
 import { AppContext, MyAccountContext } from "context/appContext";
 import PropTypes from "prop-types";
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import { Link } from "react-router-dom";
 
 export default function PopoverCmp({ popup, setPopup, productId }) {

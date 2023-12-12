@@ -5,13 +5,12 @@ import {
   ListItemButton,
   ListItemText,
   Paper,
-  useMediaQuery,
 } from "@mui/material";
-import { styled, useTheme } from "@mui/material/styles";
+import { styled } from "@mui/material/styles";
 import algoliasearch from "algoliasearch/lite";
+import { useState } from "react";
 import { Hits, InstantSearch, SearchBox } from "react-instantsearch-hooks-web";
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
 
 const StyledSearchBox = styled(SearchBox)(({ theme }) => ({
   "& .ais-SearchBox-input": {

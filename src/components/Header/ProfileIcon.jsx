@@ -10,11 +10,6 @@ export default function ProfileIcon({ src }) {
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
 
-  async function signOut() {
-    await logOut();
-    navigate("/");
-  }
-
   return (
     <Box>
       <Button

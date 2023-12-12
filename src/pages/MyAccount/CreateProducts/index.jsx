@@ -14,21 +14,19 @@ import { useTheme } from "@mui/material/styles";
 import BackdropCmp from "components/BackdropCmp";
 import SelectCmp from "components/SelectCmp";
 import { AppContext, MyAccountContext } from "context/appContext";
+import { getFromFirestore } from "pages/util";
 import { useContext, useEffect, useState } from "react";
 import { getAllCategoryNames } from "structure/categories";
 import { PostImage } from "./style";
 import { createProduct } from "./util";
-import { getFromFirestore } from "pages/util";
 
 export default function CreateProducts() {
   const [specification, setSpecification] = useState({ files: [] });
   const [loading, setLoading] = useState(false);
   const [isEditingProduct, setIsEditingProduct] = useState(false);
 
-  const { setShowSnackbarCmp, setShowBackdropCmp, showBackdropCmp } =
-    useContext(AppContext);
-  const { editProductId, setTabPosition, setEditProductId } =
-    useContext(MyAccountContext);
+  const { setShowSnackbarCmp, setShowBackdropCmp } = useContext(AppContext);
+  const { editProductId, setEditProductId } = useContext(MyAccountContext);
 
   const theme = useTheme();
 

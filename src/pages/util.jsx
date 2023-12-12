@@ -1,16 +1,15 @@
 import {
   auth,
+  deleteDoc,
+  doc,
+  firestore,
+  getDoc,
+  getDocs,
   provider,
+  setDoc,
   signInWithPopup,
   signOut,
-  doc,
-  getDoc,
-  firestore,
-  setDoc,
-  getDocs,
-  collection,
   updateDoc,
-  deleteDoc,
 } from "config/firebase";
 
 export async function getFromFirestore(path) {
@@ -59,12 +58,4 @@ export async function storeDataInFirestore(path, data) {
 export async function signInWithGoogle() {
   const user = await signInWithPopup(auth, provider);
   return user;
-}
-
-export async function logOut() {
-  try {
-    await signOut(auth);
-  } catch (error) {
-    alert("An error occured");
-  }
 }

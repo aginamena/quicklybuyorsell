@@ -2,7 +2,7 @@ import WhatsAppIcon from "@mui/icons-material/WhatsApp";
 import { Paper, Typography } from "@mui/material";
 import currencyFormatter from "currency-formatter";
 import { getUser } from "pages/util";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 export default function Contact({ title, amount, creatorOfProduct }) {
   const formattedAmount = currencyFormatter.format(amount, { code: "NGN" });
