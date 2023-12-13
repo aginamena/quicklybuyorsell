@@ -1,40 +1,43 @@
 import { Container, Toolbar, Typography } from "@mui/material";
 import DisplayProducts from "components/DisplayProducts";
-import { collection, firestore, query, where } from "config/firebase";
-import { executeQueryOnProductsCollection } from "pages/util";
-import { useQuery } from "react-query";
+import { useState } from "react";
+import InfiniteScroll from "react-infinite-scroll-component";
+import { useInfiniteQuery } from "react-query";
+import { getProductsForReview } from "./util";
 
 export default function ProductsForReview() {
-  async function getProductsForReview() {
-    const q = query(
-      collection(firestore, "products"),
-      where("productStatus", "==", "On review")
-    );
-    const productsForReview = await executeQueryOnProductsCollection(q);
-    return productsForReview;
-  }
+  const [hasMore, setHasMore] = useState(true);
 
-  const {
-    data: products,
-    isLoading,
-    isError,
-  } = useQuery({
+  const { data, fetchNextPage, status } = useInfiniteQuery({
     queryKey: ["ProductForReview"],
-    queryFn: getProductsForReview,
+    queryFn: ({ pageParam: productId }) =>
+      getProductsForReview(productId, setHasMore),
+    getNextPageParam: (lastPage) => lastPage[lastPage.length - 1].productId,
   });
 
-  if (isError) {
+  if (status === "error") {
     alert("An error occured");
     return null;
   }
 
+  const combinedPages = data?.pages.reduce((acc, page) => {
+    return [...acc, ...page];
+  }, []);
+
   return (
     <Container>
       <Toolbar />
-      {isLoading ? (
+      {status === "loading" ? (
         <Typography>Loading...</Typography>
       ) : (
-        <DisplayProducts products={products} isPrivate={false} />
+        <InfiniteScroll
+          dataLength={combinedPages.length}
+          next={fetchNextPage}
+          hasMore={hasMore}
+          loader={<Typography>Loading...</Typography>}
+        >
+          <DisplayProducts products={combinedPages} isPrivate={false} />
+        </InfiniteScroll>
       )}
     </Container>
   );

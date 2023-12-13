@@ -10,10 +10,10 @@ export default function PublishedProducts() {
   const { selectedCategory } = useParams();
   const [hasMore, setHasMore] = useState(true);
 
-  const { data, fetchNextPage, status, error, isFetching } = useInfiniteQuery({
+  const { data, fetchNextPage, status } = useInfiniteQuery({
     queryKey: ["PublishedProducts", selectedCategory],
-    queryFn: ({ pageParam }) =>
-      getAllPublishedProducts(selectedCategory, pageParam, setHasMore),
+    queryFn: ({ pageParam: productId }) =>
+      getAllPublishedProducts(selectedCategory, productId, setHasMore),
     getNextPageParam: (lastPage) => {
       return lastPage[lastPage.length - 1].productId;
     },
