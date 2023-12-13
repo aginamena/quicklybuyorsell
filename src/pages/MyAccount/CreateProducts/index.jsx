@@ -25,8 +25,12 @@ export default function CreateProducts() {
   const [loading, setLoading] = useState(false);
   const [isEditingProduct, setIsEditingProduct] = useState(false);
 
-  const { setShowSnackbarCmp, setShowBackdropCmp } = useContext(AppContext);
-  const { editProductId, setEditProductId } = useContext(MyAccountContext);
+  const {
+    setShowSnackbarCmp,
+    setShowBackdropCmp,
+    setSelectedProductId,
+    selectedProductId,
+  } = useContext(AppContext);
 
   const theme = useTheme();
 
@@ -91,18 +95,18 @@ export default function CreateProducts() {
   }
 
   useEffect(() => {
-    if (editProductId.length > 0) {
+    if (selectedProductId.length > 0) {
       async function loadProduct() {
         setLoading(true);
-        const product = await getFromFirestore(`products/${editProductId}`);
+        const product = await getFromFirestore(`products/${selectedProductId}`);
         setIsEditingProduct(true);
         setSpecification({ ...product, originalFiles: product.files });
         setLoading(false);
-        setEditProductId("");
+        setSelectedProductId("");
       }
       loadProduct();
     }
-  }, [editProductId]);
+  }, [selectedProductId]);
 
   if (loading) {
     return <Typography>Loading...</Typography>;

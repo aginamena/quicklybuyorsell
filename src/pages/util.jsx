@@ -8,7 +8,6 @@ import {
   provider,
   setDoc,
   signInWithPopup,
-  signOut,
   updateDoc,
 } from "config/firebase";
 
