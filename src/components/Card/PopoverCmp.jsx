@@ -8,16 +8,24 @@ import { Link } from "react-router-dom";
 
 export default function PopoverCmp({ popup, setPopup, productId }) {
   //snackbar can be used also to delete product
-  const { setShowSnackbarCmp, setShowBackdropCmp } = useContext(AppContext);
-  const { setEditProductId, setTabPosition } = useContext(MyAccountContext);
+  const {
+    setShowSnackbarCmp,
+    setShowBackdropCmp,
+    setShowDialogCmp,
+    setSelectedProductId,
+  } = useContext(AppContext);
+  const { setTabPosition } = useContext(MyAccountContext);
 
   function editProduct() {
     const tabPosition = 0;
     setTabPosition(tabPosition);
-    setEditProductId(productId);
+    setSelectedProductId(productId);
   }
 
-  async function deleteProduct() {}
+  async function deleteProduct() {
+    setShowDialogCmp(true);
+    setSelectedProductId(productId);
+  }
 
   return (
     <Popover
@@ -46,7 +54,7 @@ export default function PopoverCmp({ popup, setPopup, productId }) {
       >
         Edit product
       </Typography>
-      {/* <Typography
+      <Typography
         onClick={deleteProduct}
         sx={{
           p: 2,
@@ -54,7 +62,7 @@ export default function PopoverCmp({ popup, setPopup, productId }) {
         }}
       >
         Delete product
-      </Typography> */}
+      </Typography>
       <BackdropCmp />
     </Popover>
   );

@@ -1,56 +1,52 @@
 import { Container, Toolbar, Typography } from "@mui/material";
 import DisplayProducts from "components/DisplayProducts";
-import { collection, firestore, orderBy, query, where } from "config/firebase";
-import { executeQueryOnProductsCollection, isUserAdmin } from "pages/util";
-import { useQuery } from "react-query";
+import { isUserAdmin } from "pages/util";
+import { useState } from "react";
+import InfiniteScroll from "react-infinite-scroll-component";
+import { useInfiniteQuery } from "react-query";
 import { useParams } from "react-router-dom";
+import { getAllProducts } from "./util";
 
 export default function SellerProducts() {
   const { sellerEmail } = useParams();
+  const [hasMore, setHasMore] = useState(true);
+  const isAdmin = isUserAdmin();
 
-  async function getAllProducts() {
-    const isAdmin = isUserAdmin();
-    const q = isAdmin
-      ? query(
-          collection(firestore, "products"),
-          where("creatorOfProduct", "==", sellerEmail),
-          orderBy("productId", "desc")
-        )
-      : query(
-          collection(firestore, "products"),
-          where("creatorOfProduct", "==", sellerEmail),
-          where("productStatus", "==", "Published"),
-          orderBy("productId", "desc")
-        );
-    const sellersProducts = await executeQueryOnProductsCollection(q);
-    return sellersProducts;
-  }
-
-  const {
-    data: products,
-    isLoading,
-    isError,
-  } = useQuery({
+  const { data, fetchNextPage, status } = useInfiniteQuery({
     queryKey: ["SellerProducts", sellerEmail],
-    queryFn: getAllProducts,
+    queryFn: ({ pageParam: productId }) =>
+      getAllProducts(productId, setHasMore, sellerEmail, isAdmin),
+    getNextPageParam: (lastPage) => lastPage[lastPage.length - 1].productId,
   });
 
-  if (isError) {
+  if (status === "error") {
     alert("An error occured");
     return null;
   }
 
+  const combinedPages = data?.pages.reduce((acc, page) => {
+    return [...acc, ...page];
+  }, []);
+
   return (
     <Container>
       <Toolbar />
-      {isLoading ? (
+      {status === "loading" ? (
         <Typography>Loading...</Typography>
-      ) : products.length == 0 ? (
+      ) : combinedPages.length == 0 ? (
         <Typography>
+          {" "}
           Seller hasn't created any products or they are not live yet.
         </Typography>
       ) : (
-        <DisplayProducts products={products} isPrivate={false} />
+        <InfiniteScroll
+          dataLength={combinedPages.length}
+          next={fetchNextPage}
+          hasMore={hasMore}
+          loader={<Typography>Loading...</Typography>}
+        >
+          <DisplayProducts products={combinedPages} isPrivate={false} />
+        </InfiniteScroll>
       )}
     </Container>
   );

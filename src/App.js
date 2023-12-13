@@ -18,6 +18,7 @@ import { useState } from "react";
 import { HashRouter, Route, Routes } from "react-router-dom";
 import Root from "./pages/Root";
 import { darkTheme } from "./theme";
+import DialogCmp from "components/DialogCmp";
 
 function App() {
   const [showSnackbarCmp, setShowSnackbarCmp] = useState({
@@ -26,6 +27,9 @@ function App() {
   });
   const [showBackdropCmp, setShowBackdropCmp] = useState(false);
   const [showDrawerCmp, setShowDrawerCmp] = useState(false);
+  const [showDialogCmp, setShowDialogCmp] = useState(false);
+  const [selectedProductId, setSelectedProductId] = useState(false);
+
   const state = {
     showSnackbarCmp,
     setShowSnackbarCmp,
@@ -33,6 +37,10 @@ function App() {
     setShowBackdropCmp,
     showDrawerCmp,
     setShowDrawerCmp,
+    showDialogCmp,
+    setShowDialogCmp,
+    selectedProductId,
+    setSelectedProductId,
   };
 
   return (
@@ -86,6 +94,7 @@ function App() {
           </Routes>
           <SnackbarCmp />
           <DrawerCmp />
+          <DialogCmp />
         </HashRouter>
       </ThemeProvider>
     </AppContext.Provider>

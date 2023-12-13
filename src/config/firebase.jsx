@@ -21,6 +21,7 @@ import {
   orderBy,
   query,
   setDoc,
+  startAfter,
   updateDoc,
   where,
 } from "firebase/firestore";
@@ -70,6 +71,7 @@ export {
   setPersistence,
   signInWithPopup,
   signOut,
+  startAfter,
   storage,
   updateDoc,
   uploadBytes,

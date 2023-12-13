@@ -16,16 +16,13 @@ export default function MyAccount() {
   );
 
   const [tabPosition, setTabPosition] = useState(0);
-  const [editProductId, setEditProductId] = useState("");
 
   const handleChange = (_, newValue) => {
     setTabPosition(newValue);
   };
 
   const state = {
-    editProductId,
     setTabPosition,
-    setEditProductId,
   };
 
   return (

@@ -1,32 +1,26 @@
 import {
   collection,
   firestore,
+  limit,
   orderBy,
   query,
-  where,
-  limit,
   startAfter,
+  where,
 } from "config/firebase";
 import { executeQueryOnProductsCollection } from "pages/util";
 
-export async function getAllPublishedProducts(
-  selectedCategory,
-  productId,
-  setHasMore
-) {
+export async function getAllProducts(email, productId, setHasMore) {
   const q = productId
     ? query(
         collection(firestore, "products"),
-        where("category", "==", selectedCategory),
-        where("productStatus", "==", "Published"),
+        where("creatorOfProduct", "==", email),
         orderBy("productId", "desc"),
         startAfter(productId),
         limit(13)
       )
     : query(
         collection(firestore, "products"),
-        where("category", "==", selectedCategory),
-        where("productStatus", "==", "Published"),
+        where("creatorOfProduct", "==", email),
         orderBy("productId", "desc"),
         limit(13)
       );
