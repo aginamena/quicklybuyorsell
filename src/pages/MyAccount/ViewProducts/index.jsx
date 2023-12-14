@@ -14,7 +14,7 @@ export default function ViewProducts() {
     queryKey: ["ViewProducts"],
     queryFn: ({ pageParam: productId }) =>
       getAllProducts(user.email, productId, setHasMore),
-    getNextPageParam: (lastPage) => lastPage[lastPage.length - 1].productId,
+    getNextPageParam: (lastPage) => lastPage[lastPage.length - 1]?.productId,
   });
 
   if (status === "error") {
