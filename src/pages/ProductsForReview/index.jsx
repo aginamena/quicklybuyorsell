@@ -12,7 +12,7 @@ export default function ProductsForReview() {
     queryKey: ["ProductForReview"],
     queryFn: ({ pageParam: productId }) =>
       getProductsForReview(productId, setHasMore),
-    getNextPageParam: (lastPage) => lastPage[lastPage.length - 1].productId,
+    getNextPageParam: (lastPage) => lastPage[lastPage.length - 1]?.productId,
   });
 
   if (status === "error") {

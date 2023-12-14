@@ -15,7 +15,7 @@ export default function PublishedProducts() {
     queryFn: ({ pageParam: productId }) =>
       getAllPublishedProducts(selectedCategory, productId, setHasMore),
     getNextPageParam: (lastPage) => {
-      return lastPage[lastPage.length - 1].productId;
+      return lastPage[lastPage.length - 1]?.productId;
     },
   });
 
