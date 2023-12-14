@@ -8,8 +8,9 @@ import {
   Typography,
 } from "@mui/material/";
 import { AppContext } from "context/appContext";
-import { deleteDataInFirestore, getUser } from "pages/util";
+import { deleteDataInFirestore } from "pages/util";
 import React, { useContext, useState } from "react";
+import { useQueryClient } from "react-query";
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
@@ -20,20 +21,27 @@ export default function DialogCmp() {
     showDialogCmp,
     setShowDialogCmp,
     selectedProductId,
+    setSelectedProductId,
     setShowSnackbarCmp,
   } = useContext(AppContext);
   const [loading, setLoading] = useState(false);
+  const queryClient = useQueryClient();
 
   async function deleteProduct() {
     setLoading(true);
-    const { email } = getUser();
     await deleteDataInFirestore(`products/${selectedProductId}`);
+    await queryClient.refetchQueries({
+      queryKey: ["ViewProducts"],
+      type: "active",
+      exact: true,
+    });
     setLoading(false);
     setShowDialogCmp(false);
     setShowSnackbarCmp({
       shouldShow: true,
       message: "The product has been deleted.",
     });
+    setSelectedProductId("");
   }
 
   return (
@@ -50,7 +58,13 @@ export default function DialogCmp() {
           ) : (
             <>
               <Button onClick={deleteProduct}>Yes</Button>
-              <Button onClick={() => setShowDialogCmp(false)} color="error">
+              <Button
+                onClick={() => {
+                  setSelectedProductId("");
+                  setShowDialogCmp(false);
+                }}
+                color="error"
+              >
                 No
               </Button>
             </>
