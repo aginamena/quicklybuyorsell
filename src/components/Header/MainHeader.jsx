@@ -64,7 +64,9 @@ export default function MainHeader({ user, setUser }) {
   }, [number]);
 
   return (
-    <Box>
+    <Box
+      sx={{ zIndex: (theme) => theme.zIndex.drawer + 1, position: "relative" }}
+    >
       <AppBar position="static">
         <Toolbar sx={{ justifyContent: "space-between" }}>
           <Box style={{ display: "flex" }}>
