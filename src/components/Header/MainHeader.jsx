@@ -111,7 +111,7 @@ export default function MainHeader({ user, setUser }) {
           <Box>
             {Object.keys(user).length !== 0 ? (
               <div data-testid="profileMenu">
-                <ProfileIcon src={user.photoURL} />
+                <ProfileIcon setUser={setUser} src={user.photoURL} />
               </div>
             ) : (
               <Button data-testid="signInBtn" onClick={signIn}>
