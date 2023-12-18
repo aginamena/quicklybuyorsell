@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-export default function ProfileIcon({ src }) {
+export default function ProfileIcon({ src, setUser }) {
   const navigate = useNavigate();
 
   const [anchorEl, setAnchorEl] = useState(null);
@@ -32,6 +32,15 @@ export default function ProfileIcon({ src }) {
             >
               My Account
             </MenuItem>
+            <MenuItem
+              onClick={() => {
+                localStorage.clear();
+                setUser({});
+                navigate("/");
+              }}
+            >
+              Log Out
+            </MenuItem>
           </Menu>
         </div>
       )}
@@ -41,4 +50,5 @@ export default function ProfileIcon({ src }) {
 
 ProfileIcon.propTypes = {
   src: PropTypes.string.isRequired,
+  setUser: PropTypes.func.isRequired,
 };
