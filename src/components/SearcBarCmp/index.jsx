@@ -9,13 +9,17 @@ import {
 import { styled } from "@mui/material/styles";
 import algoliasearch from "algoliasearch/lite";
 import { useState } from "react";
-import { Hits, InstantSearch, SearchBox } from "react-instantsearch-hooks-web";
+import {
+  Hits,
+  InstantSearch,
+  SearchBox,
+  Configure,
+} from "react-instantsearch-hooks-web";
 import { useNavigate } from "react-router-dom";
 
 const StyledSearchBox = styled(SearchBox)(({ theme }) => ({
   "& .ais-SearchBox-input": {
     width: "600px",
-    //   width: ismediumScreenSizeAndBelow ? "90%" : "600px",
     height: "40PX",
     paddingLeft: "20px",
     paddingRight: "10px",
@@ -52,6 +56,7 @@ export default function SearchBarCmp() {
         indexName="products"
         future={{ preserveSharedStateOnUnmount: false }}
       >
+        <Configure filters="productStatus:Published" />
         <StyledSearchBox
           onInput={(e) => {
             setSearchQuery(e.target.value);
@@ -71,18 +76,21 @@ export default function SearchBarCmp() {
           >
             <List>
               <Hits
-                hitComponent={({ hit }) => (
-                  <ListItem disablePadding component="div">
-                    <ListItemButton
-                      onClick={() => {
-                        setOpenSearchBar(false);
-                        navigate(`product-details/${hit.productId}`);
-                      }}
-                    >
-                      <ListItemText primary={hit.title} />
-                    </ListItemButton>
-                  </ListItem>
-                )}
+                hitComponent={({ hit }) => {
+                  console.log(hit);
+                  return (
+                    <ListItem disablePadding component="div">
+                      <ListItemButton
+                        onClick={() => {
+                          setOpenSearchBar(false);
+                          navigate(`product-details/${hit.productId}`);
+                        }}
+                      >
+                        <ListItemText primary={hit.title} />
+                      </ListItemButton>
+                    </ListItem>
+                  );
+                }}
               />
             </List>
           </Paper>
