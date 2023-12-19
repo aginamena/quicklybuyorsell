@@ -16,6 +16,16 @@ import { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import DialogCmp from "./DialogCmp";
 import ProfileIcon from "./ProfileIcon";
+import { styled } from "@mui/material/styles";
+
+const ParentCmp = styled(Box)(({ theme }) => ({
+  zIndex: theme.zIndex.drawer + 1,
+  position: "relative",
+  [theme.breakpoints.down("md")]: {
+    zIndex: theme.zIndex.drawer + 0,
+    position: "static",
+  },
+}));
 
 export default function MainHeader({ user, setUser }) {
   const [openDialog, setOpenDialog] = useState(false);
@@ -64,8 +74,7 @@ export default function MainHeader({ user, setUser }) {
   }, [number]);
 
   return (
-    <Box
-      sx={{ zIndex: (theme) => theme.zIndex.drawer + 1, position: "relative" }}
+    <ParentCmp
     >
       <AppBar position="static">
         <Toolbar sx={{ justifyContent: "space-between" }}>
@@ -129,7 +138,7 @@ export default function MainHeader({ user, setUser }) {
         loading={loading}
         setLoading={setLoading}
       />
-    </Box>
+    </ParentCmp>
   );
 }
 
