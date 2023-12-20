@@ -32,12 +32,7 @@ export default function RadioGroupCmp({
   return (
     <>
       <FormControl>
-        <RadioGroup
-          aria-labelledby="demo-controlled-radio-buttons-group"
-          name="controlled-radio-buttons-group"
-          value={value}
-          onChange={handleChange}
-        >
+        <RadioGroup value={value} onChange={handleChange}>
           {values.map((value, index) => (
             <FormControlLabel
               key={index}

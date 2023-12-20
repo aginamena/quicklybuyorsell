@@ -106,7 +106,7 @@ export default function PublishedProducts() {
             <RadioGroupCmp
               values={["Male", "Female", "Unisex"]}
               name="type"
-              defaultValue={filter.type ? filter.type : ""}
+              previousValue={filter.type ? filter.type : ""}
               setFilter={setFilter}
             />
           </Paper>
