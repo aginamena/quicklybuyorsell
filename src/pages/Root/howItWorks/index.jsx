@@ -19,7 +19,7 @@ export default function HowItWorks() {
     },
     {
       title:
-        "Pay the seller once you've confirmed that the product meets your expectations.",
+        "Pay the seller through the site once you've confirmed that the product meets your expectations.",
       imagePath: "root/how_it_works/pay_for_the_product.jpg",
     },
   ];

@@ -72,10 +72,10 @@ export default function PublishedProducts() {
           })}
           anchor="left"
           sx={{
-            width: "300px",
+            width: "250px",
             flexShrink: 0,
             [`& .MuiDrawer-paper`]: {
-              width: "300px",
+              width: "250px",
               boxSizing: "border-box",
             },
           }}

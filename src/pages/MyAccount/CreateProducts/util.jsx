@@ -34,6 +34,7 @@ export async function createProduct(specification) {
       productId,
       createdProductTimestamp: new Date().getTime(),
       productStatus: "On review",
+      category: "nike-sneakers",
       creatorOfProduct: email,
     };
     await storeDataInFirestore(productsCollection, specification);
