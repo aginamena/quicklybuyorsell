@@ -7,7 +7,7 @@ export default function ReveiwsAndRatings() {
       src: "root/reviews_and_ratings/ngozi_samuels.jpeg",
       name: "Ngozi Samuels",
       description:
-        "As a fashion seller, it's very easy to advertise my products for sale here. One of the reasons i like QBOS products is that you will only find high quality products for sale here.",
+        "It's very easy to advertise my products for sale here. One of the reasons i like QBOS products is that you will only find high quality products for sale here.",
     },
     {
       src: "root/reviews_and_ratings/celeb_johnson.jpeg",

@@ -119,16 +119,6 @@ export default function CreateProducts() {
         </Typography>
       )}
       <Typography style={{ marginBottom: "20px" }}>Product category</Typography>
-      <SelectCmp
-        name="Select category"
-        menuItems={getAllCategoryNames()}
-        handleSelect={(value) =>
-          setSpecification({
-            ...specification,
-            category: value,
-          })
-        }
-      />
       <Box style={{ marginTop: "20px" }}>
         <SelectCmp
           name="Type"
@@ -264,7 +254,7 @@ export default function CreateProducts() {
         multiline
         value={specification.description}
         rows={5}
-        placeholder="Provide details like&#10;Size = ...&#10;Colour = ...&#10;Brand = ...&#10;What other details do you want buyers to know about?"
+        placeholder="Provide details like&#10;Size = ...&#10;Colour = ...&#10;What other details do you want buyers to know about?"
         onChange={(e) =>
           setSpecification({
             ...specification,

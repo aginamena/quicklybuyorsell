@@ -1,4 +1,4 @@
-import { Container, Toolbar, Typography } from "@mui/material";
+import { Box, Button, Container, Toolbar, Typography } from "@mui/material";
 import DisplayProducts from "components/DisplayProducts";
 import {
   collection,
@@ -10,6 +10,7 @@ import {
 } from "config/firebase";
 import { executeQueryOnProductsCollection } from "pages/util";
 import { useQuery } from "react-query";
+import { Link } from "react-router-dom";
 
 export default function TodaysProducts() {
   async function getLast8PublishedProducts() {
@@ -50,6 +51,11 @@ export default function TodaysProducts() {
       ) : (
         <DisplayProducts products={products} isPrivate={false} />
       )}
+      <Box style={{ textAlign: "center", marginTop: "30px" }}>
+        <Link to="published-products/nike-sneakers">
+          <Button variant="outlined">Explore all products</Button>
+        </Link>
+      </Box>
     </Container>
   );
 }
