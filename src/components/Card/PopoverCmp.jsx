@@ -1,10 +1,12 @@
 import Popover from "@mui/material/Popover";
 import Typography from "@mui/material/Typography";
+import Divider from "@mui/material/Divider";
 import BackdropCmp from "components/BackdropCmp";
 import { AppContext, MyAccountContext } from "context/appContext";
 import PropTypes from "prop-types";
 import { useContext } from "react";
 import { Link } from "react-router-dom";
+import FacebookIcon from "@mui/icons-material/Facebook";
 
 export default function PopoverCmp({ popup, setPopup, productId }) {
   //snackbar can be used also to delete product
@@ -25,6 +27,18 @@ export default function PopoverCmp({ popup, setPopup, productId }) {
   async function deleteProduct() {
     setShowDialogCmp(true);
     setSelectedProductId(productId);
+  }
+
+  async function shareOnFacebook() {
+    // Open a new window to share the link on Facebook
+    const host =
+      process.env.NODE_ENV === "development"
+        ? "http://192.168.0.23:3000"
+        : "https://quicklybuyorsell.web.app";
+    window.open(
+      `https://www.facebook.com/sharer/sharer.php?u=${host}/#/product-details/${productId}`,
+      "_blank"
+    );
   }
 
   return (
@@ -54,6 +68,29 @@ export default function PopoverCmp({ popup, setPopup, productId }) {
       >
         Edit product
       </Typography>
+      <Divider
+        sx={{
+          borderBottomWidth: "5px",
+          // marginTop: "50px"
+        }}
+      />
+      <Typography
+        onClick={shareOnFacebook}
+        sx={{
+          p: 2,
+          cursor: "pointer",
+          display: "flex",
+          alignItems: "center",
+        }}
+      >
+        Share on: <FacebookIcon sx={{ marginLeft: "10px" }} />
+      </Typography>
+      <Divider
+        sx={{
+          borderBottomWidth: "5px",
+          // marginTop: "50px"
+        }}
+      />
       <Typography
         onClick={deleteProduct}
         sx={{

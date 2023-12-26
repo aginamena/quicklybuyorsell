@@ -17,6 +17,7 @@ import Contact from "./Contact";
 import ImageGalleryCmp from "./ImageGalleryCmp";
 import Specification from "./Specification";
 import { acceptProduct, rejectProduct } from "./util";
+import { Helmet } from "react-helmet";
 
 export default function ProductDetails() {
   const { productId } = useParams();
@@ -74,6 +75,12 @@ export default function ProductDetails() {
         <Typography>Loading...</Typography>
       ) : (
         <>
+          <Helmet>
+            <title>
+              {productDetails.title} | Quickly buy or sell your Nike shoes
+            </title>
+            <meta name="description" content={productDetails.description} />
+          </Helmet>
           <Grid container spacing={3}>
             {productDetails.files && (
               <Grid item md={8} xs={12}>
