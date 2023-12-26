@@ -80,6 +80,16 @@ export default function ProductDetails() {
               {productDetails.title} | Quickly buy or sell your Nike shoes
             </title>
             <meta name="description" content={productDetails.description} />
+            {/* Open Graph meta tags for Facebook sharing */}
+            <meta
+              property="og:title"
+              content={`${productDetails.title} | Quickly buy or sell your Nike shoes`}
+            />
+            <meta
+              property="og:description"
+              content={productDetails.description}
+            />
+            <meta property="og:image" content={productDetails.files[0]} />
           </Helmet>
           <Grid container spacing={3}>
             {productDetails.files && (
